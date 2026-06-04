@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="7つの密室を抜けるPC向け謎解きサイト。部屋ごとにルールが変わり、最後に未来の楽園へたどり着く。"
+    />
+    <meta name="theme-color" content="#071018" />
+    <title>7 Rooms / 7 Doors</title>
+    <link rel="icon" href="favicon.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="app-shell">
+      <header class="hero">
+        <div class="hero-copy-block">
+          <p class="eyebrow">Escape Chronicle</p>
+          <h1>7 Rooms / 7 Doors</h1>
+          <p class="hero-copy">
+            閉じ込められた白い部屋から始まる、7つの密室。部屋を抜けるほど、
+            ここがただの監禁場所ではないとわかっていく。
+          </p>
+        </div>
+
+        <div class="hero-status">
+          <p class="hero-status-label">Save Status</p>
+          <p id="save-status" class="hero-status-value">新規プレイ</p>
+          <div class="hero-buttons">
+            <button id="audio-toggle" class="ghost-button" type="button">
+              BGM OFF
+            </button>
+            <button id="clear-save-button" class="ghost-button" type="button">
+              セーブ削除
+            </button>
+          </div>
+        </div>
+      </header>
+
+      <main class="game-layout">
+        <section class="story-panel">
+          <div class="panel-header">
+            <span id="stage-label">Prologue</span>
+            <span id="stage-counter">0 / 7 Rooms</span>
+          </div>
+
+          <div class="stage-meta">
+            <span id="theme-chip" class="meta-chip">導入</span>
+            <span id="rule-chip" class="meta-chip">ルール説明</span>
+          </div>
+
+          <div id="scene-art" class="scene-art stage-intro" aria-hidden="true"></div>
+
+          <div class="story-copy">
+            <h2 id="stage-title">閉じた世界のはじまり</h2>
+            <p id="stage-text">
+              7部屋構成の完成版。最初はただの脱出に見えても、抜けるたびに世界の正体が見えてくる。
+            </p>
+          </div>
+
+          <div class="story-notes">
+            <p class="hint-label">Current Objective</p>
+            <p id="objective-text">
+              まずはルールを覚える。各部屋の違和感は、あとでそのまま鍵になる。
+            </p>
+          </div>
+        </section>
+
+        <section class="play-panel">
+          <div class="panel-header">
+            <span>Clues</span>
+            <button id="reset-button" class="ghost-button" type="button">
+              タイトルへ戻る
+            </button>
+          </div>
+
+          <div id="clue-grid" class="clue-grid"></div>
+
+          <div id="hint-box" class="hint-box">
+            <p class="hint-label">Hint</p>
+            <p id="hint-text">行き詰まったら、その部屋だけにある読み方を疑う。</p>
+          </div>
+
+          <form id="answer-form" class="answer-box">
+            <label for="answer-input" id="prompt-text">答えを入力</label>
+            <div class="answer-row">
+              <input
+                id="answer-input"
+                name="answer"
+                type="text"
+                autocomplete="off"
+                spellcheck="false"
+                inputmode="text"
+              />
+              <button type="submit" class="primary-button">送信</button>
+            </div>
+            <div class="action-row">
+              <button id="hint-button" type="button" class="ghost-button">
+                ヒントを見る
+              </button>
+              <span id="attempt-text">ミス 0 / 3</span>
+            </div>
+          </form>
+
+          <div id="feedback" class="feedback" aria-live="polite"></div>
+        </section>
+
+        <section class="journal-panel">
+          <div class="panel-header">
+            <span>Progress</span>
+            <span id="timeline-text">Room 0 / 7</span>
+          </div>
+
+          <div id="timeline" class="timeline"></div>
+
+          <div class="logbook">
+            <div class="logbook-header">
+              <div>
+                <p class="hint-label">Logbook</p>
+                <h3>探索メモ</h3>
+              </div>
+              <p id="logbook-status" class="logbook-status">
+                まだ記録はない
+              </p>
+            </div>
+            <div id="memo-list" class="memo-list"></div>
+          </div>
+        </section>
+      </main>
+    </div>
+
+    <dialog id="ending-dialog" class="ending-dialog">
+      <div class="dialog-inner">
+        <p id="ending-kind" class="eyebrow">Ending</p>
+        <h2 id="ending-title"></h2>
+        <p id="ending-text"></p>
+        <div class="dialog-actions">
+          <button id="dialog-primary" class="primary-button" type="button">
+            つづける
+          </button>
+          <button id="dialog-secondary" class="ghost-button" type="button">
+            タイトルへ
+          </button>
+        </div>
+      </div>
+    </dialog>
+
+    <script src="script.js"></script>
+  </body>
+</html>
