@@ -40,6 +40,10 @@ input {
   font: inherit;
 }
 
+[hidden] {
+  display: none !important;
+}
+
 button {
   transition:
     transform 180ms ease,
