@@ -52,11 +52,12 @@ const stages = [
     objective: "A-Dの手がかりから4桁の数字を作る。",
     prompt: "4桁の数字を入力",
     answer: ["5123"],
-    hintText: "部屋の中にある4つの数字は、A-Dの順番で読むだけでいい。",
+    hintText: "A、B、C、Dの順番で数字を並べてください。",
     hints: [
       "A, B, C, D の順に、それぞれの数字だけ拾う。",
       "Aは5、Bは1、Cは2、Dは3。答えは 5123。",
     ],
+    wrongMessage: "認証コードが一致しません。\nもう一度、AからDの順番を確認してください。",
     artClass: "stage-1",
     feedbackText: "壁の静けさに比べて、数字だけが妙に明確だ。",
     successText:
@@ -104,11 +105,12 @@ const stages = [
     objective: "鏡文字と反転文字から、正しい認証語を読む。",
     prompt: "認証語を入力",
     answer: ["PHASE 1"],
-    hintText: "裏から読むのではなく、鏡として読んだときの形を考える。",
+    hintText: "そのまま読むのではなく、鏡に映したように反対側から読んでください。",
     hints: [
       "反転している英字を、鏡に映したときの並びへ戻す。",
       "札の語は『PHASE 1』になる。",
     ],
+    wrongMessage: "読み取りに失敗しました。\n文字を反対側から見直してください。",
     artClass: "stage-2",
     feedbackText: "見えている文字と、読める文字が一致しない。",
     successText:
@@ -156,11 +158,12 @@ const stages = [
     objective: "時計、年号、過去のルールを使って正しい年を特定する。",
     prompt: "4桁の数字を入力",
     answer: ["2068"],
-    hintText: "止まった時計の時刻と、周囲の年号の対応を見比べる。",
+    hintText: "第1試験の順番と、第2試験の反転読みを組み合わせてください。",
     hints: [
       "時計の針が指す位置と、4枚の年号札の並びを対応させる。",
       "止まった時刻と年号の組み合わせから、答えは 2068。",
     ],
+    wrongMessage: "年号が一致しません。\n順番と反転の両方を確認してください。",
     artClass: "stage-3",
     feedbackText: "時計は止まっていても、記録の時間だけは進み続けている。",
     successText:
@@ -208,11 +211,12 @@ const stages = [
     objective: "残されたメニューや掲示物の頭文字から、この食堂の現状を読む。",
     prompt: "現状をカタカナで入力",
     answer: ["ダレモイナイ"],
-    hintText: "文章全体ではなく、各行の最初の一文字だけに意味がある。",
+    hintText: "メニュー名の最初の文字だけを拾ってください。",
     hints: [
       "各メニューや掲示文の頭文字だけを拾う。",
       "並べると『ダレモイナイ』になる。",
     ],
+    wrongMessage: "答えが一致しません。\nメニューの頭文字を順に読んでください。",
     artClass: "stage-4",
     feedbackText: "食器だけが人の代わりに、静かに待っている。",
     successText:
@@ -260,11 +264,12 @@ const stages = [
     objective: "植物ラベルの文字から、温室が求める言葉を抜き出す。",
     prompt: "導かれる言葉をカタカナで入力",
     answer: ["ミドリヲツナゲ"],
-    hintText: "数字は順番ではなく、ラベルの何文字目かを示している。",
+    hintText: "植物名の最初の文字だけを、1から7の順に読んでください。",
     hints: [
       "各ラベルに対応する文字を抜き出し、順に並べる。",
       "抜き出された語は『ミドリヲツナゲ』になる。",
     ],
+    wrongMessage: "認証に失敗しました。\n植物ラベルの先頭文字を順番に確認してください。",
     artClass: "stage-5",
     feedbackText: "ここだけは、温室というより未来の庭に近い。",
     successText:
@@ -312,11 +317,12 @@ const stages = [
     objective: "断片記録を年代順に並べ、この施設が待っていた存在を特定する。",
     prompt: "導かれる語をカタカナで入力",
     answer: ["サイゴノコウホシャ"],
-    hintText: "本文の内容と年号の並びから、候補者像を一つに絞る。",
+    hintText: "過去から未来へ、記録を順番にたどってください。\n最後に残るのは、あなた自身の区分です。",
     hints: [
       "2087 から 2091 までの流れを追うと、誰を待っていた施設かが見えてくる。",
       "導かれる語は『サイゴノコウホシャ』。",
     ],
+    wrongMessage: "記録の照合に失敗しました。\n年代順をもう一度確認してください。",
     artClass: "stage-6",
     feedbackText: "ここは記録庫であると同時に、待機室の履歴でもある。",
     successText:
@@ -368,12 +374,14 @@ const stages = [
       "帰還認証を開始します。これまでの部屋で取得した認証番号を使用し、回復した記憶ログから該当する文字を抽出してください。抽出した文字を、部屋を通過した順に並べてください。それが、あなたの最終意思です。",
     objective: "ROOM 01〜07 の記憶ログと認証番号から文字を抽出し、最終意思を完成させる。",
     prompt: "最終意思をカタカナで入力",
-    answer: ["チキュウヲモドセ"],
-    hintText: "右側の手がかり欄に並んだ記憶ログと認証番号を、そのまま部屋順に使う。",
+    answer: ["チキュウヲモドセ", "地球を戻せ", "地球ヲ戻セ"],
+    hintText:
+      "手がかり欄の記憶ログを見てください。\nROOM 01は8文字目、ROOM 02は1文字目、ROOM 03は10文字目を読みます。\nROOM 07だけは、5文字目と19文字目の2文字を読みます。",
     hints: [
       "ROOM 01 から ROOM 07 まで、認証番号が示す文字だけを抜き出す。",
       "並ぶ語は『チキュウヲモドセ』になる。",
     ],
+    wrongMessage: "最終意思が一致しません。\n記憶ログと認証番号を、部屋の順番に照合してください。",
     artClass: "stage-7",
     feedbackText:
       "右側の手がかり欄には、これまでに回復した記憶ログと認証番号が並んでいる。",
@@ -418,6 +426,30 @@ const successEnding = {
   title: "ようこそ、2091年へ",
   text:
     "選別試験を終了します。\n\n候補者の意思を確認しました。\nあなたは、未来へ逃げるのではない。\n地球を戻すために、2091年へ進む。\n\n扉の先にあるのは、無人のまま保たれた楽園ではなく、やり直すために残された帰還地点だった。最後の到着者であるあなたが選んだのは、逃避ではなく帰還。ここから先は、失われた地球を取り戻すための時間になる。",
+};
+
+const trueEndingScene = {
+  label: "TRUE END",
+  title: "ようこそ、2091年へ",
+  theme: "WHITE GARDEN",
+  ruleTag: "2091",
+  counter: "TRUE / END",
+  kicker: "TRUE END / 2091",
+  messages: [
+    "扉の先に、風があった。",
+    "白い施設の空気とは違う。",
+    "水の音が聞こえる。",
+    "遠くに、白い都市が見える。",
+    "その周りには、緑が広がっていた。",
+    "空は青かった。",
+    "世界は、まだ終わっていなかった。",
+    "ここは、楽園ではない。",
+    "ここは、始まりの場所だ。",
+    "あなたは一歩を踏み出す。",
+    "地球を戻すために。",
+    "ようこそ、2091年へ。",
+  ],
+  cardCopy: "地球を戻すための旅が、ここから始まる。",
 };
 
 const hotspotLayouts = {
@@ -529,14 +561,15 @@ const sceneIllustrations = {
 
 const stageScenes = {
   intro: {
-    kicker: "Arrival Log",
+    kicker: "WHITE GARDEN / LOG",
     introMessages: [
-      "目を覚ますと、白い光だけが静かに満ちていた。",
-      "まだ出口は見えない。ただ、奥に続く扉だけがこちらを待っている。",
-      "この施設の目的も、ここへ来た理由も思い出せない。",
-      "けれど、各部屋を抜けるたびに記憶ログが回復するらしい。",
-      "最後に必要になるのは、答えそのものではなく、回収した記憶と認証番号だ。",
-      "準備ができたら、最初の認証を始めよう。",
+      "プレイヤーは、白い密室で目を覚ます。",
+      "自分が誰なのか、なぜここにいるのかは思い出せない。",
+      "しかし、部屋を進むごとに少しずつ記憶が戻ってくる。",
+      "この施設は、白庭選別施設 / WHITE GARDEN。",
+      "未来へ送られるのは、ただ生き残りたい人間ではない。",
+      "地球を再生する意思を持つ者だけが、2091年へ進める。",
+      "あなたは、その最後の候補者である。",
     ],
     puzzleTitle: "接続確認",
     puzzleBody: [
@@ -548,7 +581,7 @@ const stageScenes = {
       "白い廊下の先で、最初の部屋のロックが解ける。",
       "試験が始まる。",
     ],
-    doorPrompt: "試験を開始する準備が整った。扉に触れる。",
+    doorPrompt: "最初の試験へ進む準備が整っている。",
   },
   "room-1": {
     kicker: "ROOM 01 / INTRO",
@@ -580,178 +613,210 @@ const stageScenes = {
       "「見ることから始めてください」",
       "これは、脱出ではない。",
       "何かの試験だ。",
-      "ROOM 01",
-      "記憶ログ：シロイルームニチイサナオト",
-      "認証番号：8",
     ],
     doorPrompt: "白い扉が認証待機に入っている。",
   },
   "room-2": {
     kicker: "ROOM 02 / INTRO",
     introMessages: [
-      "次の部屋は、白よりも冷たい。",
-      "壁も机も、鏡のようにこちらを返している。",
-      "正面を見ているはずなのに、情報がどれもねじれて見えた。",
-      "普通に読める文字は、中央端末にしか残っていない。",
+      "扉の先は、白い記録室だった。",
+      "壁には、無数の記録ファイルが並んでいる。",
+      "けれど、正面の文字だけが読めない。",
+      "文字が、左右に反転している。",
+      "そのままでは意味を持たない。",
+      "どこかから、同じ声が聞こえる。",
       "「第2試験を開始します」",
       "「視点転換の認証を行います」",
-      "「反転した記録から、認証語を読み取ってください」",
+      "「見えているものを、そのまま信じてはいけません」",
     ],
     puzzleTitle: "第2試験：視点転換",
     puzzleBody: [
-      "鏡文字・反転文字を読め。",
-      "見えている向きを信用するな。",
-      "正しい認証語を入力してください。",
+      "記録は反転している。",
+      "鏡の向こうに、白化現象の段階が記されている。",
+      "反転した表示を読み取り、白化段階を入力してください。",
     ],
     successMessages: [
-      "認証語を受理しました。",
-      "鏡面の奥で、次の通路がひらく。",
-      "ガラスの向こうに、また記憶の切れ端が浮かぶ。",
-      "「危険は、いつも正面にあるとは限らない」",
-      "視点を変えろ、と誰かが言っていた。",
-      "ROOM 02",
-      "記憶ログ：キケンハカガミノムコウニアル",
-      "認証番号：1",
+      "白化段階を確認しました。",
+      "反転していた記録が、正しい向きで表示される。",
+      "PHASE 1。",
+      "それは、地球の終わりの始まりだった。",
+      "記憶が、少しだけ戻る。",
+      "ニュースの音声が聞こえる。",
+      "「白化現象は一時的な気象異常です」",
+      "けれど、その言葉は信じられなかった。",
+      "危機は、見方を変えなければ見えなかった。",
     ],
     doorPrompt: "鏡面の扉が、言葉を待っている。",
   },
   "room-3": {
     kicker: "ROOM 03 / INTRO",
     introMessages: [
-      "天井近くの大型時計が、時間を止めたままこちらを見下ろしていた。",
-      "秒針はなく、年号だけが床に散らばっている。",
-      "過去の部屋で覚えたルールが、ここで一つに重なっていく気配がした。",
+      "次の部屋は、異様なほど静かだった。",
+      "壁には、いくつもの時計が並んでいる。",
+      "すべての針が止まっている。",
+      "時間だけが、この部屋に置き去りにされたようだった。",
+      "正面の大きな時計は、白い光を放っている。",
+      "機械音声が響く。",
       "「第3試験を開始します」",
       "「時間理解の認証を行います」",
-      "「時計、年号、過去の規則を組み合わせて認証番号を特定してください」",
+      "「過去の規則を用いて、始まりの年を導いてください」",
     ],
     puzzleTitle: "第3試験：時間理解",
     puzzleBody: [
-      "時計、年号、過去のルールを組み合わせろ。",
-      "止まった時刻は、ただの演出ではない。",
-      "正しい4桁の年号を入力してください。",
+      "止まった時計と記録を読み取れ。",
+      "AからDへ。",
+      "反転した時刻を正しい向きに戻せ。",
+      "EDEN-7計画が始動した年を入力してください。",
     ],
     successMessages: [
-      "年号認証を受理しました。",
-      "止まっていた時計の縁に、淡い光が走る。",
-      "未来ではなく、記録の中心へ針が戻っていく。",
-      "「時計は未来を示すためではなく、記録を閉じるために止まる」",
-      "数字より先に、意味のほうが記憶へ刺さった。",
-      "ROOM 03",
-      "記憶ログ：トケイハミライヲチュウシンニトマル",
-      "認証番号：10",
+      "年号を確認しました。",
+      "2068年。",
+      "EDEN-7計画、正式始動。",
+      "白い時計の針が、一度だけ震えた。",
+      "止まっていたのは、時計ではない。",
+      "人類が、未来へ進むことをためらった時間だった。",
+      "あなたは、その年を知っている。",
+      "記憶の奥で、誰かが言った。",
+      "「この計画は、逃避ではありません」",
+      "「地球へ戻るための準備です」",
     ],
     doorPrompt: "止まった時計の部屋が、次の認証を促している。",
   },
   "room-4": {
     kicker: "ROOM 04 / INTRO",
     introMessages: [
-      "扉の先に広がっていたのは、人のいない食堂だった。",
-      "椅子も食器も整っているのに、食べた痕跡だけが消えている。",
-      "残されたのは、掲示物とメニューの見出しばかりだ。",
-      "ここでは文章全体より、最初の一文字のほうが重い。",
+      "扉の先には、食堂が広がっていた。",
+      "白い机と椅子が、規則正しく並んでいる。",
+      "食器は置かれている。",
+      "配膳口も、照明も、まだ生きている。",
+      "けれど、人の声はしない。",
+      "誰かがいたはずの場所だけが残っている。",
+      "機械音声が聞こえた。",
       "「第4試験を開始します」",
       "「共同体理解の認証を行います」",
-      "「残された見出しから、この場所の現状を答えてください」",
+      "「不在を読み取ってください」",
     ],
     puzzleTitle: "第4試験：共同体理解",
     puzzleBody: [
-      "メニューや掲示物の頭文字を拾え。",
-      "誰がいたのかではなく、誰がいなくなったのかを見る。",
-      "導かれる現状を入力してください。",
+      "食堂のメニューには、6つの項目が並んでいる。",
+      "ダイズスープ / レンズ豆パン / モリンガ茶 / イオン水 / ナノ米 / イチゴ培養ジャム",
+      "各項目の頭文字を順番に読んでください。",
     ],
     successMessages: [
-      "現状認証を受理しました。",
-      "配膳口の向こうで、空のトレーが一度だけ震えた。",
-      "もうここで食事をする人はいない。",
-      "それでも、誰かが戻る日を信じて食堂だけは維持されていた。",
-      "ROOM 04",
-      "記憶ログ：ムジンノショクドウデウシナッタヒトヲオモウ",
-      "認証番号：10",
+      "答えを確認しました。",
+      "ダレモイナイ。",
+      "その言葉が、食堂の白い壁に反響する。",
+      "一瞬だけ、食器の音が聞こえた。",
+      "誰かの笑い声。",
+      "向かいの席にいたはずの人。",
+      "けれど次の瞬間、椅子だけが残っていた。",
+      "全員は救えなかった。",
+      "それでも、忘れてはいけない。",
+      "未来は、一人で作るものではない。",
     ],
     doorPrompt: "食堂の扉が、次の証言を待っている。",
   },
   "room-5": {
     kicker: "ROOM 05 / INTRO",
     introMessages: [
-      "次の部屋は、温室というより静かな庭園だった。",
-      "青緑の光が葉に反射して、呼吸までやわらかくなる。",
-      "けれど、ここでも試験は続く。",
-      "植物ラベルには、名前だけでなく文字位置まで記されていた。",
+      "白い扉の先に、緑があった。",
+      "これまでの部屋とは違う。",
+      "空気が、少しだけ柔らかい。",
+      "ガラスの天井から、淡い光が差し込んでいる。",
+      "植物たちは、静かに息をしているように見えた。",
+      "機械音声が、少しだけ遠く聞こえる。",
       "「第5試験を開始します」",
       "「自然共生の認証を行います」",
-      "「植物ラベルから、導かれる語を抜き出してください」",
+      "「未来へ残すべきものを読み取ってください」",
     ],
     puzzleTitle: "第5試験：自然共生",
     puzzleBody: [
-      "植物ラベルから文字を抜き出せ。",
-      "数字は順番ではなく、何文字目かを示している。",
-      "導かれる言葉を入力してください。",
+      "植物ラベルを順番に確認してください。",
+      "1. ミント 2. ドクダミ 3. リンドウ 4. ヲダマキ",
+      "5. ツバキ 6. ナデシコ 7. ゲッケイジュ",
+      "各ラベルの1文字目を採取してください。",
     ],
     successMessages: [
-      "共生認証を受理しました。",
-      "温室の光がわずかにあたたかくなる。",
-      "ここは楽園ではなく、未来へ接ぐための庭だった。",
-      "植物は飾りではない。次へつなぐ意思そのものだ。",
-      "ROOM 05",
-      "記憶ログ：ミドリヲミライヘツナグ",
-      "認証番号：4",
+      "答えを確認しました。",
+      "ミドリヲツナゲ。",
+      "温室の光が、少しだけ強くなる。",
+      "小さな苗木を持つ手を思い出す。",
+      "誰かが聞いた。",
+      "「未来に持っていけるものを一つだけ選べるなら？」",
+      "あなたは、迷わなかった。",
+      "緑を選んだ。",
+      "この施設は、人類を逃がすためだけの場所ではない。",
+      "地球を、もう一度緑に戻すための場所だった。",
     ],
     doorPrompt: "温室の扉が、次の記録庫へ続いている。",
   },
   "room-6": {
     kicker: "ROOM 06 / INTRO",
     introMessages: [
-      "保存ケースが並ぶ記録庫は、他の部屋よりも静かだった。",
-      "音がないのではなく、歴史だけが積み上がっている静けさだ。",
-      "断片的な年号と記録を並べると、この施設の正体が浮かびはじめる。",
+      "次の部屋には、無数の記録が保管されていた。",
+      "棚には、年代別のファイルが並んでいる。",
+      "白化現象。",
+      "EDEN-7計画。",
+      "白庭選別施設。",
+      "どれも、知らない言葉ではない気がした。",
+      "機械音声が響く。",
       "「第6試験を開始します」",
       "「歴史理解の認証を行います」",
-      "「記録を年代順に並べ、待機対象を特定してください」",
+      "「記録を正しい順に並べ、あなたの立場を確認してください」",
     ],
     puzzleTitle: "第6試験：歴史理解",
     puzzleBody: [
-      "記録を年代順に並べろ。",
-      "この施設が誰を待っていた場所なのかを答えよ。",
-      "導かれる語を入力してください。",
+      "以下の記録を年代順に並べてください。",
+      "2039 白化現象、初観測 / 2054 植物の大量枯死 / 2068 EDEN-7始動",
+      "2076 白庭選別施設 稼働開始 / 2083 第1次候補者 未来移送 / 2091 再生圏 受け入れ開始",
+      "末尾に表示される候補者区分を入力してください。",
     ],
     successMessages: [
-      "記録認証を受理しました。",
-      "保存ケースの照明が、古い順に一つずつ消えていく。",
-      "ここは監禁施設ではない。",
-      "遅れて到着する誰かのために、試験と生活を残した避難施設だ。",
-      "ROOM 06",
-      "記憶ログ：ワタシハモウイチドエラバレタ",
-      "認証番号：5",
+      "記録照合を完了しました。",
+      "サイゴノコウホシャ。",
+      "その言葉を見た瞬間、胸の奥が冷たくなる。",
+      "記録端末に、あなたの情報が表示される。",
+      "EDEN-7 Last Candidate。",
+      "状態：記憶初期化済み。",
+      "備考：本人の意思確認を再実施すること。",
+      "あなたは偶然ここにいたのではない。",
+      "あなたは、最後の候補者だった。",
+      "そして、これは再試験だった。",
     ],
     doorPrompt: "最後の扉が、帰還認証の準備に入っている。",
   },
   "room-7": {
     kicker: "ROOM 07 / RETURN GATE",
     introMessages: [
-      "最後の部屋は、これまでより静かで、むしろやさしかった。",
-      "目の前の扉は出口ではなく、帰還を受け入れるための門に見える。",
-      "ここまで集めた記憶ログと認証番号が、すべて並び始めた。",
-      "「帰還認証を開始します」",
-      "「これまでの部屋で取得した認証番号を使用し、回復した記憶ログから該当する文字を抽出してください」",
-      "「抽出した文字を、部屋を通過した順に並べてください」",
-      "「それが、あなたの最終意思です」",
+      "最後の部屋は、白い光に満ちていた。",
+      "正面には、巨大な円形ゲートがある。",
+      "これまでの部屋とは違う。",
+      "ここは、出口ではない。",
+      "何かを選ぶための場所だ。",
+      "機械音声が、静かに告げる。",
+      "「第7試験を開始します」",
+      "「未来選択の認証を行います」",
+      "「これまで回復した記憶を照合してください」",
+      "「あなたの最終意思を入力してください」",
     ],
     puzzleTitle: "最終試験：帰還認証",
     puzzleBody: [
-      "ROOM 01 から ROOM 07 までの記憶ログを参照せよ。",
-      "認証番号が示す文字を抜き出し、部屋順に並べろ。",
-      "その言葉が、最後の扉をひらく。",
+      "帰還認証を開始します。",
+      "これまでの部屋で取得した認証番号を使用し、回復した記憶ログから該当する文字を抽出してください。",
+      "抽出した文字を、部屋を通過した順に並べてください。",
+      "それが、あなたの最終意思です。",
     ],
     successMessages: [
-      "帰還認証：完了",
-      "選別試験を終了します。",
-      "候補者の意思を確認しました。",
-      "あなたは、未来へ逃げるのではない。",
-      "地球を戻すために、2091年へ進む。",
-      "ROOM 07",
-      "記憶ログ：ミライハドコカデハナイチキュウヘカエセ",
-      "認証番号：5 / 19",
+      "最終意思を確認しました。",
+      "チキュウヲモドセ。",
+      "帰還ゲートが、静かに起動する。",
+      "これまでの記憶が、ひとつにつながっていく。",
+      "あなたは、未来へ逃げるために選ばれたのではない。",
+      "地球を戻すために選ばれた。",
+      "機械音声が、最後に告げる。",
+      "「選別試験を終了します」",
+      "「候補者の意思を確認しました」",
+      "「ようこそ、2091年へ」",
     ],
     doorPrompt: "集めた記憶を束ね、最後の扉に答えを返す。",
   },
@@ -823,6 +888,12 @@ const endingTitle = document.getElementById("ending-title");
 const endingText = document.getElementById("ending-text");
 const dialogPrimary = document.getElementById("dialog-primary");
 const dialogSecondary = document.getElementById("dialog-secondary");
+const trueEndingCard = document.getElementById("true-ending-card");
+const trueEndingKind = document.getElementById("true-ending-kind");
+const trueEndingTitle = document.getElementById("true-ending-title");
+const trueEndingCopy = document.getElementById("true-ending-copy");
+const trueEndingRestart = document.getElementById("true-ending-restart");
+const trueEndingTitleButton = document.getElementById("true-ending-title-button");
 const audioButtons = [audioToggle, titleAudioToggle].filter(Boolean);
 
 function triggerTransientClass(element, className, duration = 700) {
@@ -1028,10 +1099,15 @@ function setPuzzleOpen(isOpen) {
   }
 }
 
+function setTrueEndingCardOpen(isOpen) {
+  trueEndingCard.hidden = !isOpen;
+}
+
 function showTitleScreen() {
   document.body.dataset.view = "title";
   setMenuOpen(false);
   setPuzzleOpen(false);
+  setTrueEndingCardOpen(false);
   state.loadedFromSave = hasResumeData();
   setSettingsOpen(false);
   updateSaveStatus();
@@ -1041,6 +1117,7 @@ function showTitleScreen() {
 function showGameScreen() {
   document.body.dataset.view = "game";
   setSettingsOpen(false);
+  setTrueEndingCardOpen(false);
 }
 
 function resetEphemeralState() {
@@ -1090,7 +1167,7 @@ function renderLogbook() {
     card.className = "memo-card";
 
     const title = document.createElement("h4");
-    title.textContent = formatRoomRecordLabel(stage.roomNumber);
+    title.textContent = `${formatRoomRecordLabel(stage.roomNumber)}：${stage.title}`;
 
     const memory = document.createElement("p");
     memory.textContent = `記憶ログ：${stage.memoryLog}`;
@@ -1118,6 +1195,11 @@ function renderNarrativeWindow() {
 
   if (state.phase === "intro" && state.messageIndex === total - 1) {
     narrativeNext.textContent = "クリックで扉を操作";
+    return;
+  }
+
+  if (state.phase === "ending" && state.messageIndex === total - 1) {
+    narrativeNext.textContent = "クリックでTRUE ENDへ";
     return;
   }
 
@@ -1202,6 +1284,7 @@ function renderStage() {
   const scene = getStageScene(stage);
 
   document.body.dataset.room = stage.id;
+  menuToggle.hidden = false;
   stageLabel.textContent = stage.label;
   stageCounter.textContent = `${roomNumber} / 7 Rooms`;
   themeChip.textContent = stage.theme;
@@ -1218,6 +1301,27 @@ function renderStage() {
   updateAudioForStage();
   saveProgress();
   startNarrativeSequence(scene.introMessages, "intro", scene.kicker || "Narrative");
+  playStageEntry();
+}
+
+function renderTrueEndingStage() {
+  document.body.dataset.room = "true-ending";
+  menuToggle.hidden = true;
+  stageLabel.textContent = trueEndingScene.label;
+  stageCounter.textContent = trueEndingScene.counter;
+  themeChip.textContent = trueEndingScene.theme;
+  ruleChip.textContent = trueEndingScene.ruleTag;
+  stageTitle.textContent = trueEndingScene.title;
+  sceneIllustration.src = sceneIllustrations["room-7"];
+  sceneArt.className = "scene-art stage-ending";
+  setMenuOpen(false);
+  setPuzzleOpen(false);
+  setDoorEnabled(false);
+  setTrueEndingCardOpen(false);
+  renderLogbook();
+  updateSaveStatus();
+  updateAudioForStage();
+  startNarrativeSequence(trueEndingScene.messages, "ending", trueEndingScene.kicker);
   playStageEntry();
 }
 
@@ -1243,6 +1347,14 @@ function showEnding(data, mode) {
   dialog.showModal();
 }
 
+function showTrueEndingCard() {
+  trueEndingKind.textContent = "TRUE END";
+  trueEndingTitle.textContent = trueEndingScene.title;
+  trueEndingCopy.textContent = trueEndingScene.cardCopy;
+  setTrueEndingCardOpen(true);
+  playSoundEffect("ending-true");
+}
+
 function advanceStage() {
   triggerTransientClass(sceneArt, "is-transitioning", 900);
   triggerTransientClass(transitionVeil, "is-active", 520);
@@ -1259,7 +1371,7 @@ function advanceStage() {
       saveProgress();
       updateSaveStatus();
       renderLogbook();
-      showEnding(successEnding, "success");
+      renderTrueEndingStage();
     }, 420);
     return;
   }
@@ -1277,11 +1389,17 @@ function finishNarrativeSequence() {
 
   if (state.phase === "success") {
     advanceStage();
+    return;
+  }
+
+  if (state.phase === "ending") {
+    narrativeWindow.hidden = true;
+    showTrueEndingCard();
   }
 }
 
 function advanceNarrative() {
-  if (state.phase !== "intro" && state.phase !== "success") {
+  if (state.phase !== "intro" && state.phase !== "success" && state.phase !== "ending") {
     return;
   }
 
@@ -1377,7 +1495,8 @@ answerForm.addEventListener("submit", (event) => {
   }
 
   state.attempts += 1;
-  feedback.textContent = "反応はない。部屋のルールをもう一度見直す必要がある。";
+  feedback.textContent =
+    stage.wrongMessage || "反応はない。部屋のルールをもう一度見直す必要がある。";
   feedback.className = "feedback error";
   triggerTransientClass(answerForm, "is-invalid", 620);
   triggerTransientClass(sceneArt, "is-error", 620);
@@ -1480,6 +1599,14 @@ dialogSecondary.addEventListener("click", () => {
   }
 
   resetRun();
+});
+
+trueEndingRestart.addEventListener("click", () => {
+  startFreshGame();
+});
+
+trueEndingTitleButton.addEventListener("click", () => {
+  showTitleScreen();
 });
 
 async function toggleAudio() {
