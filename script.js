@@ -414,53 +414,53 @@ const successEnding = {
 
 const hotspotLayouts = {
   intro: [
-    { x: 21, y: 26 },
-    { x: 77, y: 24 },
-    { x: 25, y: 73 },
-    { x: 73, y: 68 },
+    { x: 26, y: 30 },
+    { x: 73, y: 28 },
+    { x: 24, y: 71 },
+    { x: 76, y: 70 },
   ],
   "room-1": [
-    { x: 18, y: 30 },
-    { x: 78, y: 43 },
-    { x: 41, y: 23 },
-    { x: 67, y: 72 },
+    { x: 12, y: 26 },
+    { x: 12, y: 56 },
+    { x: 73, y: 31 },
+    { x: 73, y: 58 },
   ],
   "room-2": [
-    { x: 22, y: 37 },
-    { x: 54, y: 30 },
-    { x: 76, y: 48 },
-    { x: 13, y: 74 },
+    { x: 24, y: 28 },
+    { x: 20, y: 68 },
+    { x: 76, y: 34 },
+    { x: 72, y: 62 },
   ],
   "room-3": [
-    { x: 34, y: 36 },
-    { x: 63, y: 36 },
-    { x: 42, y: 68 },
-    { x: 68, y: 63 },
+    { x: 25, y: 27 },
+    { x: 24, y: 68 },
+    { x: 76, y: 35 },
+    { x: 74, y: 68 },
   ],
   "room-4": [
-    { x: 22, y: 56 },
-    { x: 48, y: 36 },
-    { x: 74, y: 58 },
-    { x: 83, y: 21 },
+    { x: 14, y: 83 },
+    { x: 22, y: 62 },
+    { x: 83, y: 84 },
+    { x: 50, y: 24 },
   ],
   "room-5": [
-    { x: 18, y: 78 },
-    { x: 37, y: 73 },
-    { x: 57, y: 79 },
-    { x: 77, y: 70 },
+    { x: 17, y: 69 },
+    { x: 81, y: 68 },
+    { x: 60, y: 44 },
+    { x: 67, y: 38 },
   ],
   "room-6": [
-    { x: 70, y: 30 },
-    { x: 18, y: 36 },
-    { x: 76, y: 58 },
-    { x: 55, y: 48 },
-    { x: 33, y: 58 },
+    { x: 37, y: 37 },
+    { x: 44, y: 39 },
+    { x: 51, y: 35 },
+    { x: 58, y: 39 },
+    { x: 65, y: 37 },
   ],
   "room-7": [
-    { x: 24, y: 44 },
-    { x: 39, y: 33 },
-    { x: 62, y: 33 },
-    { x: 77, y: 45 },
+    { x: 27, y: 55 },
+    { x: 41, y: 72 },
+    { x: 60, y: 72 },
+    { x: 74, y: 55 },
   ],
 };
 
@@ -508,74 +508,15 @@ const sceneDetails = {
   },
 };
 
-const sceneProps = {
-  intro: [
-    { x: 21, y: 27, width: 82, height: 106, shape: "panel", label: "guide" },
-    { x: 77, y: 24, width: 90, height: 74, shape: "screen", label: "warning" },
-    { x: 25, y: 72, width: 92, height: 18, shape: "beam", label: "seam" },
-    { x: 73, y: 67, width: 58, height: 58, shape: "orb", label: "self" },
-  ],
-  "room-1": [
-    { x: 18, y: 30, width: 64, height: 110, shape: "scratch", label: "A" },
-    { x: 78, y: 43, width: 120, height: 136, shape: "shelf", label: "B" },
-    { x: 41, y: 18, width: 210, height: 22, shape: "light", label: "C" },
-    { x: 67, y: 72, width: 112, height: 112, shape: "clock", label: "D" },
-  ],
-  "room-2": [
-    { x: 22, y: 37, width: 112, height: 146, shape: "mirror", label: "01" },
-    { x: 54, y: 30, width: 152, height: 108, shape: "terminal", label: "log" },
-    { x: 76, y: 48, width: 116, height: 144, shape: "glass", label: "02" },
-    { x: 13, y: 74, width: 74, height: 74, shape: "stamp", label: "2091" },
-  ],
-  "room-3": [
-    { x: 50, y: 28, width: 240, height: 240, shape: "clock", label: "main" },
-    { x: 34, y: 36, width: 54, height: 108, shape: "tag", label: "A" },
-    { x: 63, y: 36, width: 54, height: 108, shape: "tag", label: "B" },
-    { x: 42, y: 68, width: 54, height: 108, shape: "tag", label: "C" },
-    { x: 68, y: 63, width: 54, height: 108, shape: "tag", label: "D" },
-  ],
-  "room-4": [
-    { x: 52, y: 67, width: 430, height: 112, shape: "table", label: "hall" },
-    { x: 22, y: 56, width: 88, height: 62, shape: "note", label: "A" },
-    { x: 48, y: 36, width: 88, height: 62, shape: "note", label: "B" },
-    { x: 74, y: 58, width: 88, height: 62, shape: "note", label: "C" },
-    { x: 83, y: 21, width: 132, height: 88, shape: "screen", label: "terminal" },
-  ],
-  "room-5": [
-    { x: 18, y: 78, width: 84, height: 110, shape: "plant", label: "A" },
-    { x: 37, y: 73, width: 84, height: 124, shape: "plant", label: "B" },
-    { x: 57, y: 79, width: 84, height: 122, shape: "plant", label: "C" },
-    { x: 77, y: 70, width: 84, height: 128, shape: "plant", label: "D" },
-    { x: 82, y: 26, width: 220, height: 158, shape: "window", label: "garden" },
-  ],
-  "room-6": [
-    { x: 16, y: 50, width: 180, height: 310, shape: "archive", label: "west" },
-    { x: 50, y: 50, width: 180, height: 310, shape: "archive", label: "center" },
-    { x: 84, y: 50, width: 180, height: 310, shape: "archive", label: "east" },
-    { x: 18, y: 36, width: 92, height: 62, shape: "record", label: "2087" },
-    { x: 33, y: 58, width: 92, height: 62, shape: "record", label: "2088" },
-    { x: 55, y: 48, width: 92, height: 62, shape: "record", label: "2089" },
-    { x: 70, y: 30, width: 92, height: 62, shape: "record", label: "2090" },
-    { x: 76, y: 58, width: 92, height: 62, shape: "record", label: "2091" },
-  ],
-  "room-7": [
-    { x: 50, y: 38, width: 270, height: 300, shape: "gate", label: "gate" },
-    { x: 24, y: 44, width: 92, height: 136, shape: "sigil", label: "A" },
-    { x: 39, y: 33, width: 92, height: 136, shape: "sigil", label: "B" },
-    { x: 62, y: 33, width: 92, height: 136, shape: "sigil", label: "C" },
-    { x: 77, y: 45, width: 92, height: 136, shape: "sigil", label: "D" },
-  ],
-};
-
 const sceneIllustrations = {
-  intro: "assets/scene-intro.svg",
-  "room-1": "assets/scene-room-1.svg",
-  "room-2": "assets/scene-room-2.svg",
-  "room-3": "assets/scene-room-3.svg",
-  "room-4": "assets/scene-room-4.svg",
-  "room-5": "assets/scene-room-5.svg",
-  "room-6": "assets/scene-room-6.svg",
-  "room-7": "assets/scene-room-7.svg",
+  intro: "assets/figma-bg/prologue.png",
+  "room-1": "assets/figma-bg/room-1.png",
+  "room-2": "assets/figma-bg/room-2.png",
+  "room-3": "assets/figma-bg/room-3.png",
+  "room-4": "assets/figma-bg/room-4.png",
+  "room-5": "assets/figma-bg/room-5.png",
+  "room-6": "assets/figma-bg/room-6.png",
+  "room-7": "assets/figma-bg/room-7.png",
 };
 
 const state = {
@@ -1044,22 +985,6 @@ function renderClue(stage, clueIndex) {
 
 function renderSceneProps(stage) {
   scenePropsLayer.innerHTML = "";
-  const props = sceneProps[stage.id] || [];
-
-  for (const item of props) {
-    const prop = document.createElement("div");
-    prop.className = "scene-prop";
-    prop.dataset.shape = item.shape;
-    if (item.label) {
-      prop.dataset.label = item.label;
-    }
-    prop.style.left = `${item.x}%`;
-    prop.style.top = `${item.y}%`;
-    prop.style.width = `${item.width}px`;
-    prop.style.height = `${item.height}px`;
-    prop.style.transform = "translate(-50%, -50%)";
-    scenePropsLayer.append(prop);
-  }
 }
 
 function renderHotspots(stage) {
