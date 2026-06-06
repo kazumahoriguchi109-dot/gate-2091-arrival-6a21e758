@@ -592,6 +592,13 @@ const state = {
   loadedFromSave: false,
 };
 
+const titleSaveStatus = document.getElementById("title-save-status");
+const startGameButton = document.getElementById("start-game-button");
+const continueGameButton = document.getElementById("continue-game-button");
+const settingsButton = document.getElementById("settings-button");
+const settingsPanel = document.getElementById("settings-panel");
+const titleAudioToggle = document.getElementById("title-audio-toggle");
+const titleClearSaveButton = document.getElementById("title-clear-save-button");
 const stageLabel = document.getElementById("stage-label");
 const stageCounter = document.getElementById("stage-counter");
 const themeChip = document.getElementById("theme-chip");
@@ -631,6 +638,7 @@ const endingTitle = document.getElementById("ending-title");
 const endingText = document.getElementById("ending-text");
 const dialogPrimary = document.getElementById("dialog-primary");
 const dialogSecondary = document.getElementById("dialog-secondary");
+const audioButtons = [audioToggle, titleAudioToggle].filter(Boolean);
 
 function triggerTransientClass(element, className, duration = 700) {
   if (!element) {
@@ -714,6 +722,11 @@ function clampStageIndex(index) {
 
 function saveProgress() {
   try {
+    if (state.stageIndex === 0 && state.maxReached === 0) {
+      window.localStorage.removeItem(STORAGE_KEY);
+      return;
+    }
+
     const payload = {
       stageIndex: state.stageIndex,
       maxReached: state.maxReached,
@@ -786,23 +799,91 @@ function getSceneIllustration(stage) {
   return sceneIllustrations[stage.id] || sceneIllustrations.intro;
 }
 
-function updateSaveStatus() {
+function hasResumeData() {
+  return state.maxReached > 0;
+}
+
+function getSaveStatusText() {
   if (state.maxReached >= stages.length) {
-    saveStatus.textContent = "全7部屋クリア済み。最後の到着者として再開可能。";
+    return "全7部屋クリア済み。最後の到着者として再開可能。";
+  }
+
+  if (hasResumeData()) {
+    return `Room ${Math.max(1, getCurrentRoomNumber())} から再開可能`;
+  }
+
+  return "新規プレイ";
+}
+
+function updateSaveStatus() {
+  const statusText = getSaveStatusText();
+  saveStatus.textContent = statusText;
+  titleSaveStatus.textContent = statusText;
+  continueGameButton.disabled = !hasResumeData();
+}
+
+function setSettingsOpen(isOpen) {
+  const nextOpen = Boolean(isOpen);
+  settingsPanel.hidden = !nextOpen;
+  settingsButton.setAttribute("aria-expanded", String(nextOpen));
+}
+
+function syncAudioButtons() {
+  const label = state.audioEnabled ? "BGM ON" : "BGM OFF";
+
+  for (const button of audioButtons) {
+    button.textContent = label;
+  }
+}
+
+function showTitleScreen() {
+  document.body.dataset.view = "title";
+  state.loadedFromSave = hasResumeData();
+  setSettingsOpen(false);
+  updateSaveStatus();
+  updateAudioForStage();
+}
+
+function showGameScreen() {
+  document.body.dataset.view = "game";
+  setSettingsOpen(false);
+}
+
+function resetEphemeralState() {
+  state.attempts = 0;
+  state.hintIndex = 0;
+  state.currentClueIndex = null;
+  state.inspectedClues = [];
+}
+
+function startFreshGame() {
+  state.stageIndex = 0;
+  state.maxReached = 0;
+  state.loadedFromSave = false;
+  resetEphemeralState();
+  clearStoredProgress();
+  showGameScreen();
+  renderStage();
+}
+
+function continueSavedGame() {
+  if (!hasResumeData()) {
     return;
   }
 
-  if (state.stageIndex > 0) {
-    saveStatus.textContent = `Room ${getCurrentRoomNumber()} から再開中`;
-    return;
-  }
+  resetEphemeralState();
+  showGameScreen();
+  renderStage();
+}
 
-  if (state.loadedFromSave && state.maxReached > 0) {
-    saveStatus.textContent = "中断データはあるが、現在はタイトル画面にいる";
-    return;
-  }
-
-  saveStatus.textContent = "新規プレイ";
+function clearProgressAndReturnToTitle() {
+  state.stageIndex = 0;
+  state.maxReached = 0;
+  state.loadedFromSave = false;
+  resetEphemeralState();
+  clearStoredProgress();
+  renderStage();
+  showTitleScreen();
 }
 
 function renderTimeline() {
@@ -1095,8 +1176,8 @@ function advanceStage() {
 
   state.stageIndex += 1;
   state.maxReached = Math.max(state.maxReached, state.stageIndex);
-  state.attempts = 0;
-  state.hintIndex = 0;
+  state.loadedFromSave = true;
+  resetEphemeralState();
 
   if (state.stageIndex >= stages.length) {
     state.stageIndex = stages.length - 1;
@@ -1117,22 +1198,11 @@ function advanceStage() {
 }
 
 function resetRun() {
-  state.stageIndex = 0;
-  state.maxReached = 0;
-  state.attempts = 0;
-  state.hintIndex = 0;
-  state.currentClueIndex = null;
-  state.inspectedClues = [];
-  state.loadedFromSave = false;
-  clearStoredProgress();
-  renderStage();
+  showTitleScreen();
 }
 
 function retryCurrentRoom() {
-  state.attempts = 0;
-  state.hintIndex = 0;
-  state.currentClueIndex = null;
-  state.inspectedClues = [];
+  resetEphemeralState();
   renderStage();
 }
 
@@ -1195,7 +1265,23 @@ resetButton.addEventListener("click", () => {
 });
 
 clearSaveButton.addEventListener("click", () => {
-  resetRun();
+  clearProgressAndReturnToTitle();
+});
+
+startGameButton.addEventListener("click", () => {
+  startFreshGame();
+});
+
+continueGameButton.addEventListener("click", () => {
+  continueSavedGame();
+});
+
+settingsButton.addEventListener("click", () => {
+  setSettingsOpen(settingsPanel.hidden);
+});
+
+titleClearSaveButton.addEventListener("click", () => {
+  clearProgressAndReturnToTitle();
 });
 
 dialogPrimary.addEventListener("click", () => {
@@ -1203,7 +1289,7 @@ dialogPrimary.addEventListener("click", () => {
   dialog.close();
 
   if (mode === "success") {
-    resetRun();
+    startFreshGame();
     return;
   }
 
@@ -1215,7 +1301,7 @@ dialogSecondary.addEventListener("click", () => {
   dialog.close();
 
   if (mode === "success") {
-    renderStage();
+    showTitleScreen();
     return;
   }
 
@@ -1234,13 +1320,13 @@ async function toggleAudio() {
   if (!state.audioEnabled) {
     await state.audioContext.resume();
     state.audioEnabled = true;
-    audioToggle.textContent = "BGM ON";
+    syncAudioButtons();
     updateAudioForStage();
     return;
   }
 
   state.audioEnabled = false;
-  audioToggle.textContent = "BGM OFF";
+  syncAudioButtons();
   stopOscillators();
 }
 
@@ -1273,7 +1359,7 @@ function updateAudioForStage() {
     { type: "sine", notes: [220, 329.63] },
   ];
 
-  const room = getCurrentRoomNumber();
+  const room = document.body.dataset.view === "title" ? 0 : getCurrentRoomNumber();
   const config = soundscapes[room] || soundscapes[0];
 
   for (const frequency of config.notes) {
@@ -1292,12 +1378,16 @@ function updateAudioForStage() {
   }
 }
 
-audioToggle.addEventListener("click", () => {
-  toggleAudio().catch(() => {
-    feedback.textContent = "この環境ではBGMを開始できなかった。";
-    feedback.className = "feedback error";
+for (const button of audioButtons) {
+  button.addEventListener("click", () => {
+    toggleAudio().catch(() => {
+      feedback.textContent = "この環境ではBGMを開始できなかった。";
+      feedback.className = "feedback error";
+    });
   });
-});
+}
 
 loadProgress();
+syncAudioButtons();
 renderStage();
+showTitleScreen();

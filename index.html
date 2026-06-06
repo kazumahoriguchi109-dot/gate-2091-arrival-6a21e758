@@ -11,17 +11,98 @@
     <meta name="robots" content="noindex, nofollow, noarchive, nosnippet" />
     <title>7 Rooms / 7 Doors</title>
     <link rel="icon" href="favicon.svg" type="image/svg+xml" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Cormorant+Garamond:wght@400;500;600&family=Shippori+Mincho:wght@400;500;600;700&display=swap"
+    />
     <link rel="stylesheet" href="styles.css" />
   </head>
-  <body>
+  <body data-view="title">
+    <section id="title-screen" class="title-screen" aria-labelledby="title-heading">
+      <div class="title-ornament title-ornament-left" aria-hidden="true"></div>
+      <div class="title-ornament title-ornament-right" aria-hidden="true"></div>
+
+      <div class="title-surface">
+        <p class="title-tagline">
+          その扉の先にあるのは、<span>真実</span>か、<span>楽園</span>か。
+        </p>
+
+        <div class="title-lockup">
+          <span class="title-digit title-digit-dark" aria-hidden="true">7</span>
+          <div class="title-wordmark">
+            <h1 id="title-heading">
+              <span>ROOMS</span>
+              <span class="title-slash">/</span>
+              <span class="title-digit-inline">7</span>
+              <span class="title-word-accent">DOORS</span>
+            </h1>
+            <p class="title-eyebrow">PUZZLE ESCAPE GAME</p>
+          </div>
+        </div>
+
+        <div class="title-door-zone" aria-hidden="true">
+          <div class="title-door-frame">
+            <div class="title-door-panel">
+              <div class="title-door-slit"></div>
+              <div class="title-door-handle"></div>
+            </div>
+            <div class="title-door-glow"></div>
+          </div>
+        </div>
+
+        <div class="title-menu-block">
+          <nav class="title-menu" aria-label="タイトルメニュー">
+            <button
+              id="start-game-button"
+              class="title-menu-button title-menu-button-primary"
+              type="button"
+            >
+              はじめる
+            </button>
+            <button id="continue-game-button" class="title-menu-button" type="button">
+              途中から
+            </button>
+            <button
+              id="settings-button"
+              class="title-menu-button"
+              type="button"
+              aria-controls="settings-panel"
+              aria-expanded="false"
+            >
+              設定
+            </button>
+          </nav>
+
+          <section id="settings-panel" class="title-settings" hidden>
+            <p class="title-settings-copy">音と進行状況の管理</p>
+            <div class="title-settings-actions">
+              <button id="title-audio-toggle" class="ghost-button" type="button">
+                BGM OFF
+              </button>
+              <button id="title-clear-save-button" class="ghost-button" type="button">
+                セーブ削除
+              </button>
+            </div>
+          </section>
+
+          <div class="title-progress">
+            <p class="title-progress-label">Save Status</p>
+            <p id="title-save-status" class="title-progress-value">新規プレイ</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
     <div class="app-shell">
       <header class="topbar">
         <div class="brand-block">
-          <p class="eyebrow">Escape Chronicle</p>
+          <p class="eyebrow">Puzzle Escape Chronicle</p>
           <h1>7 Rooms / 7 Doors</h1>
           <p class="lead-copy">
-            閉じ込められた白い部屋から始まる、7つの密室。部屋を抜けるほど、
-            ここがただの監禁場所ではないとわかっていく。
+            白い避難室から始まる、静かな7つの密室。扉を抜けるほど、
+            この場所が監禁ではなく帰還のために作られたと見えてくる。
           </p>
         </div>
 
