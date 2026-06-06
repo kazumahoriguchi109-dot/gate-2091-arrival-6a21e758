@@ -527,18 +527,251 @@ const sceneIllustrations = {
   "room-7": "assets/figma-bg/room-7.png",
 };
 
+const stageScenes = {
+  intro: {
+    kicker: "Arrival Log",
+    introMessages: [
+      "目を覚ますと、白い光だけが静かに満ちていた。",
+      "まだ出口は見えない。ただ、奥に続く扉だけがこちらを待っている。",
+      "この施設の目的も、ここへ来た理由も思い出せない。",
+      "けれど、各部屋を抜けるたびに記憶ログが回復するらしい。",
+      "最後に必要になるのは、答えそのものではなく、回収した記憶と認証番号だ。",
+      "準備ができたら、最初の認証を始めよう。",
+    ],
+    puzzleTitle: "接続確認",
+    puzzleBody: [
+      "最初の扉へ接続します。",
+      "準備ができたら、開始の合図を入力してください。",
+    ],
+    successMessages: [
+      "接続を受理しました。",
+      "白い廊下の先で、最初の部屋のロックが解ける。",
+      "試験が始まる。",
+    ],
+    doorPrompt: "試験を開始する準備が整った。扉に触れる。",
+  },
+  "room-1": {
+    kicker: "ROOM 01 / INTRO",
+    introMessages: [
+      "ここはどこなんだろうか・・・。",
+      "目を覚ますと、白い部屋の中央に立っていた。",
+      "壁も、床も、扉も、すべてが白い。",
+      "人の気配はない。",
+      "正面には、細い窓のついた扉がある。",
+      "左右の壁には、A、B、C、Dの記号が見える。",
+      "どこかから、機械のような声が聞こえた。",
+      "「第1試験を開始します」",
+      "「観察力の認証を行います」",
+      "「扉に表示された情報を読み取り、認証コードを入力してください」",
+    ],
+    puzzleTitle: "第1試験：観察力",
+    puzzleBody: [
+      "AからDへ。",
+      "順番に数字を読め。",
+      "A、B、C、Dに対応する数字を確認し、4桁の認証コードを入力してください。",
+    ],
+    successMessages: [
+      "認証コードを受理しました。",
+      "白い扉の奥で、ロックが外れる音がした。",
+      "その瞬間、短い記憶がよみがえる。",
+      "白い廊下を歩いている。",
+      "誰かの声が聞こえる。",
+      "「最初の部屋では、焦らないで」",
+      "「見ることから始めてください」",
+      "これは、脱出ではない。",
+      "何かの試験だ。",
+      "ROOM 01",
+      "記憶ログ：シロイルームニチイサナオト",
+      "認証番号：8",
+    ],
+    doorPrompt: "白い扉が認証待機に入っている。",
+  },
+  "room-2": {
+    kicker: "ROOM 02 / INTRO",
+    introMessages: [
+      "次の部屋は、白よりも冷たい。",
+      "壁も机も、鏡のようにこちらを返している。",
+      "正面を見ているはずなのに、情報がどれもねじれて見えた。",
+      "普通に読める文字は、中央端末にしか残っていない。",
+      "「第2試験を開始します」",
+      "「視点転換の認証を行います」",
+      "「反転した記録から、認証語を読み取ってください」",
+    ],
+    puzzleTitle: "第2試験：視点転換",
+    puzzleBody: [
+      "鏡文字・反転文字を読め。",
+      "見えている向きを信用するな。",
+      "正しい認証語を入力してください。",
+    ],
+    successMessages: [
+      "認証語を受理しました。",
+      "鏡面の奥で、次の通路がひらく。",
+      "ガラスの向こうに、また記憶の切れ端が浮かぶ。",
+      "「危険は、いつも正面にあるとは限らない」",
+      "視点を変えろ、と誰かが言っていた。",
+      "ROOM 02",
+      "記憶ログ：キケンハカガミノムコウニアル",
+      "認証番号：1",
+    ],
+    doorPrompt: "鏡面の扉が、言葉を待っている。",
+  },
+  "room-3": {
+    kicker: "ROOM 03 / INTRO",
+    introMessages: [
+      "天井近くの大型時計が、時間を止めたままこちらを見下ろしていた。",
+      "秒針はなく、年号だけが床に散らばっている。",
+      "過去の部屋で覚えたルールが、ここで一つに重なっていく気配がした。",
+      "「第3試験を開始します」",
+      "「時間理解の認証を行います」",
+      "「時計、年号、過去の規則を組み合わせて認証番号を特定してください」",
+    ],
+    puzzleTitle: "第3試験：時間理解",
+    puzzleBody: [
+      "時計、年号、過去のルールを組み合わせろ。",
+      "止まった時刻は、ただの演出ではない。",
+      "正しい4桁の年号を入力してください。",
+    ],
+    successMessages: [
+      "年号認証を受理しました。",
+      "止まっていた時計の縁に、淡い光が走る。",
+      "未来ではなく、記録の中心へ針が戻っていく。",
+      "「時計は未来を示すためではなく、記録を閉じるために止まる」",
+      "数字より先に、意味のほうが記憶へ刺さった。",
+      "ROOM 03",
+      "記憶ログ：トケイハミライヲチュウシンニトマル",
+      "認証番号：10",
+    ],
+    doorPrompt: "止まった時計の部屋が、次の認証を促している。",
+  },
+  "room-4": {
+    kicker: "ROOM 04 / INTRO",
+    introMessages: [
+      "扉の先に広がっていたのは、人のいない食堂だった。",
+      "椅子も食器も整っているのに、食べた痕跡だけが消えている。",
+      "残されたのは、掲示物とメニューの見出しばかりだ。",
+      "ここでは文章全体より、最初の一文字のほうが重い。",
+      "「第4試験を開始します」",
+      "「共同体理解の認証を行います」",
+      "「残された見出しから、この場所の現状を答えてください」",
+    ],
+    puzzleTitle: "第4試験：共同体理解",
+    puzzleBody: [
+      "メニューや掲示物の頭文字を拾え。",
+      "誰がいたのかではなく、誰がいなくなったのかを見る。",
+      "導かれる現状を入力してください。",
+    ],
+    successMessages: [
+      "現状認証を受理しました。",
+      "配膳口の向こうで、空のトレーが一度だけ震えた。",
+      "もうここで食事をする人はいない。",
+      "それでも、誰かが戻る日を信じて食堂だけは維持されていた。",
+      "ROOM 04",
+      "記憶ログ：ムジンノショクドウデウシナッタヒトヲオモウ",
+      "認証番号：10",
+    ],
+    doorPrompt: "食堂の扉が、次の証言を待っている。",
+  },
+  "room-5": {
+    kicker: "ROOM 05 / INTRO",
+    introMessages: [
+      "次の部屋は、温室というより静かな庭園だった。",
+      "青緑の光が葉に反射して、呼吸までやわらかくなる。",
+      "けれど、ここでも試験は続く。",
+      "植物ラベルには、名前だけでなく文字位置まで記されていた。",
+      "「第5試験を開始します」",
+      "「自然共生の認証を行います」",
+      "「植物ラベルから、導かれる語を抜き出してください」",
+    ],
+    puzzleTitle: "第5試験：自然共生",
+    puzzleBody: [
+      "植物ラベルから文字を抜き出せ。",
+      "数字は順番ではなく、何文字目かを示している。",
+      "導かれる言葉を入力してください。",
+    ],
+    successMessages: [
+      "共生認証を受理しました。",
+      "温室の光がわずかにあたたかくなる。",
+      "ここは楽園ではなく、未来へ接ぐための庭だった。",
+      "植物は飾りではない。次へつなぐ意思そのものだ。",
+      "ROOM 05",
+      "記憶ログ：ミドリヲミライヘツナグ",
+      "認証番号：4",
+    ],
+    doorPrompt: "温室の扉が、次の記録庫へ続いている。",
+  },
+  "room-6": {
+    kicker: "ROOM 06 / INTRO",
+    introMessages: [
+      "保存ケースが並ぶ記録庫は、他の部屋よりも静かだった。",
+      "音がないのではなく、歴史だけが積み上がっている静けさだ。",
+      "断片的な年号と記録を並べると、この施設の正体が浮かびはじめる。",
+      "「第6試験を開始します」",
+      "「歴史理解の認証を行います」",
+      "「記録を年代順に並べ、待機対象を特定してください」",
+    ],
+    puzzleTitle: "第6試験：歴史理解",
+    puzzleBody: [
+      "記録を年代順に並べろ。",
+      "この施設が誰を待っていた場所なのかを答えよ。",
+      "導かれる語を入力してください。",
+    ],
+    successMessages: [
+      "記録認証を受理しました。",
+      "保存ケースの照明が、古い順に一つずつ消えていく。",
+      "ここは監禁施設ではない。",
+      "遅れて到着する誰かのために、試験と生活を残した避難施設だ。",
+      "ROOM 06",
+      "記憶ログ：ワタシハモウイチドエラバレタ",
+      "認証番号：5",
+    ],
+    doorPrompt: "最後の扉が、帰還認証の準備に入っている。",
+  },
+  "room-7": {
+    kicker: "ROOM 07 / RETURN GATE",
+    introMessages: [
+      "最後の部屋は、これまでより静かで、むしろやさしかった。",
+      "目の前の扉は出口ではなく、帰還を受け入れるための門に見える。",
+      "ここまで集めた記憶ログと認証番号が、すべて並び始めた。",
+      "「帰還認証を開始します」",
+      "「これまでの部屋で取得した認証番号を使用し、回復した記憶ログから該当する文字を抽出してください」",
+      "「抽出した文字を、部屋を通過した順に並べてください」",
+      "「それが、あなたの最終意思です」",
+    ],
+    puzzleTitle: "最終試験：帰還認証",
+    puzzleBody: [
+      "ROOM 01 から ROOM 07 までの記憶ログを参照せよ。",
+      "認証番号が示す文字を抜き出し、部屋順に並べろ。",
+      "その言葉が、最後の扉をひらく。",
+    ],
+    successMessages: [
+      "帰還認証：完了",
+      "選別試験を終了します。",
+      "候補者の意思を確認しました。",
+      "あなたは、未来へ逃げるのではない。",
+      "地球を戻すために、2091年へ進む。",
+      "ROOM 07",
+      "記憶ログ：ミライハドコカデハナイチキュウヘカエセ",
+      "認証番号：5 / 19",
+    ],
+    doorPrompt: "集めた記憶を束ね、最後の扉に答えを返す。",
+  },
+};
+
 const state = {
   stageIndex: 0,
   maxReached: 0,
   attempts: 0,
   hintIndex: 0,
-  currentClueIndex: null,
-  inspectedClues: [],
   audioEnabled: false,
   audioContext: null,
   oscillators: [],
   gainNode: null,
   loadedFromSave: false,
+  phase: "intro",
+  activeMessages: [],
+  messageIndex: 0,
+  revealedRecordStageId: null,
+  menuOpen: false,
 };
 
 const titleSaveStatus = document.getElementById("title-save-status");
@@ -553,34 +786,37 @@ const stageCounter = document.getElementById("stage-counter");
 const themeChip = document.getElementById("theme-chip");
 const ruleChip = document.getElementById("rule-chip");
 const stageTitle = document.getElementById("stage-title");
-const stageText = document.getElementById("stage-text");
-const objectiveText = document.getElementById("objective-text");
-const promptText = document.getElementById("prompt-text");
-const sceneCaption = document.getElementById("scene-caption");
 const sceneIllustration = document.getElementById("scene-illustration");
-const scenePropsLayer = document.getElementById("scene-props");
-const hotspotLayer = document.getElementById("hotspot-layer");
-const clueViewer = document.getElementById("clue-viewer");
-const inspectStatus = document.getElementById("inspect-status");
-const foundClues = document.getElementById("found-clues");
-const inspectLine = document.getElementById("inspect-line");
-const hintBox = document.getElementById("hint-box");
+const sceneArt = document.getElementById("scene-art");
+const transitionVeil = document.getElementById("transition-veil");
+const narrativeWindow = document.getElementById("narrative-window");
+const windowKicker = document.getElementById("window-kicker");
+const narrativeMessage = document.getElementById("narrative-message");
+const narrativeNext = document.getElementById("narrative-next");
+const messageProgress = document.getElementById("message-progress");
+const doorButton = document.getElementById("door-button");
+const doorPrompt = document.getElementById("door-prompt");
+const menuToggle = document.getElementById("menu-toggle");
+const menuCloseButton = document.getElementById("menu-close-button");
+const menuScrim = document.getElementById("menu-scrim");
+const menuDrawer = document.getElementById("menu-drawer");
+const saveStatus = document.getElementById("save-status");
+const memoList = document.getElementById("memo-list");
+const logbookStatus = document.getElementById("logbook-status");
+const puzzleOverlay = document.getElementById("puzzle-overlay");
+const puzzleKicker = document.getElementById("puzzle-kicker");
+const puzzleTitle = document.getElementById("puzzle-title");
+const puzzleBody = document.getElementById("puzzle-body");
+const closePuzzleButton = document.getElementById("close-puzzle-button");
 const hintText = document.getElementById("hint-text");
-const attemptText = document.getElementById("attempt-text");
 const feedback = document.getElementById("feedback");
 const answerForm = document.getElementById("answer-form");
 const answerInput = document.getElementById("answer-input");
+const promptText = document.getElementById("prompt-text");
 const hintButton = document.getElementById("hint-button");
 const resetButton = document.getElementById("reset-button");
 const audioToggle = document.getElementById("audio-toggle");
 const clearSaveButton = document.getElementById("clear-save-button");
-const sceneArt = document.getElementById("scene-art");
-const transitionVeil = document.getElementById("transition-veil");
-const saveStatus = document.getElementById("save-status");
-const timeline = document.getElementById("timeline");
-const timelineText = document.getElementById("timeline-text");
-const memoList = document.getElementById("memo-list");
-const logbookStatus = document.getElementById("logbook-status");
 const dialog = document.getElementById("ending-dialog");
 const endingKind = document.getElementById("ending-kind");
 const endingTitle = document.getElementById("ending-title");
@@ -618,9 +854,6 @@ function playSoundEffect(kind) {
     if (config.frequencyEnd) {
       oscillator.frequency.exponentialRampToValueAtTime(config.frequencyEnd, now + config.duration);
     }
-    if (config.detune) {
-      oscillator.detune.value = config.detune;
-    }
 
     gain.gain.setValueAtTime(0.0001, now);
     gain.gain.exponentialRampToValueAtTime(config.gain || 0.02, now + 0.02);
@@ -631,11 +864,6 @@ function playSoundEffect(kind) {
     oscillator.start(now);
     oscillator.stop(now + config.duration + 0.04);
   };
-
-  if (kind === "inspect") {
-    oneShot({ type: "triangle", frequency: 392, frequencyEnd: 466.16, duration: 0.14, gain: 0.012 });
-    return;
-  }
 
   if (kind === "success") {
     oneShot({ type: "sine", frequency: 392, frequencyEnd: 523.25, duration: 0.24, gain: 0.016 });
@@ -687,7 +915,7 @@ function saveProgress() {
     };
     window.localStorage.setItem(STORAGE_KEY, JSON.stringify(payload));
   } catch {
-    // Ignore storage failures and keep the game playable.
+    // Ignore storage failures.
   }
 }
 
@@ -739,33 +967,8 @@ function getAuthDisplay(stage) {
   return Array.isArray(stage.authNumbers) ? stage.authNumbers.join(" / ") : "";
 }
 
-function shouldRevealRecord(stage) {
-  if (stage.roomNumber <= 0 || !stage.memoryLog || !stage.authNumbers) {
-    return false;
-  }
-
-  if (state.maxReached > stage.roomNumber) {
-    return true;
-  }
-
-  return stage.showRecordWhileActive === true && getCurrentStage().id === stage.id;
-}
-
-function getHotspotsForStage(stage) {
-  const layout = hotspotLayouts[stage.id] || fallbackHotspots;
-  return stage.clues.map((clue, index) => {
-    const point = layout[index] || fallbackHotspots[index] || fallbackHotspots[0];
-    return {
-      ...clue,
-      x: point.x,
-      y: point.y,
-      index,
-    };
-  });
-}
-
-function getSceneDetail(stage) {
-  return sceneDetails[stage.id] || sceneDetails.intro;
+function getStageScene(stage) {
+  return stageScenes[stage.id] || stageScenes.intro;
 }
 
 function getSceneIllustration(stage) {
@@ -782,7 +985,7 @@ function getSaveStatusText() {
   }
 
   if (hasResumeData()) {
-    return `Room ${Math.max(1, getCurrentRoomNumber())} から再開可能`;
+    return `${formatRoomRecordLabel(Math.max(1, getCurrentRoomNumber()))} から再開可能`;
   }
 
   return "新規プレイ";
@@ -803,14 +1006,32 @@ function setSettingsOpen(isOpen) {
 
 function syncAudioButtons() {
   const label = state.audioEnabled ? "BGM ON" : "BGM OFF";
-
   for (const button of audioButtons) {
     button.textContent = label;
   }
 }
 
+function setMenuOpen(isOpen) {
+  const nextOpen = Boolean(isOpen);
+  state.menuOpen = nextOpen;
+  menuDrawer.classList.toggle("is-open", nextOpen);
+  menuDrawer.setAttribute("aria-hidden", String(!nextOpen));
+  menuToggle.setAttribute("aria-expanded", String(nextOpen));
+  menuScrim.hidden = !nextOpen;
+}
+
+function setPuzzleOpen(isOpen) {
+  const nextOpen = Boolean(isOpen);
+  puzzleOverlay.hidden = !nextOpen;
+  if (nextOpen) {
+    answerInput.focus();
+  }
+}
+
 function showTitleScreen() {
   document.body.dataset.view = "title";
+  setMenuOpen(false);
+  setPuzzleOpen(false);
   state.loadedFromSave = hasResumeData();
   setSettingsOpen(false);
   updateSaveStatus();
@@ -825,72 +1046,25 @@ function showGameScreen() {
 function resetEphemeralState() {
   state.attempts = 0;
   state.hintIndex = 0;
-  state.currentClueIndex = null;
-  state.inspectedClues = [];
+  state.phase = "intro";
+  state.activeMessages = [];
+  state.messageIndex = 0;
 }
 
-function startFreshGame() {
-  state.stageIndex = 0;
-  state.maxReached = 0;
-  state.loadedFromSave = false;
-  resetEphemeralState();
-  clearStoredProgress();
-  showGameScreen();
-  renderStage();
-}
-
-function continueSavedGame() {
-  if (!hasResumeData()) {
-    return;
+function shouldRevealRecord(stage) {
+  if (stage.roomNumber <= 0 || !stage.memoryLog || !stage.authNumbers) {
+    return false;
   }
 
-  resetEphemeralState();
-  showGameScreen();
-  renderStage();
-}
-
-function clearProgressAndReturnToTitle() {
-  state.stageIndex = 0;
-  state.maxReached = 0;
-  state.loadedFromSave = false;
-  resetEphemeralState();
-  clearStoredProgress();
-  renderStage();
-  showTitleScreen();
-}
-
-function renderTimeline() {
-  timeline.innerHTML = "";
-  const currentRoom = getCurrentRoomNumber();
-
-  for (const stage of stages.filter((item) => item.roomNumber > 0)) {
-    const card = document.createElement("div");
-    const isCleared = state.maxReached > stage.roomNumber;
-    const isActive = currentRoom === stage.roomNumber;
-    const isLocked = state.maxReached < stage.roomNumber && !isActive;
-
-    card.className = "timeline-card";
-    if (isCleared) {
-      card.classList.add("cleared");
-    }
-    if (isActive) {
-      card.classList.add("active");
-    }
-    if (isLocked) {
-      card.classList.add("locked");
-    }
-
-    const title = document.createElement("strong");
-    title.textContent = `Room ${stage.roomNumber}`;
-
-    const subtitle = document.createElement("span");
-    subtitle.textContent = stage.theme;
-
-    card.append(title, subtitle);
-    timeline.append(card);
+  if (state.maxReached > stage.roomNumber) {
+    return true;
   }
 
-  timelineText.textContent = `Room ${getCompletedRoomCount()} / 7 Cleared`;
+  if (state.revealedRecordStageId === stage.id) {
+    return true;
+  }
+
+  return stage.showRecordWhileActive === true && getCurrentStage().id === stage.id;
 }
 
 function renderLogbook() {
@@ -909,7 +1083,7 @@ function renderLogbook() {
   logbookStatus.textContent =
     getCurrentStage().id === "room-7"
       ? `${entries.length} 件の記憶ログと認証番号を照合中`
-      : `${entries.length} 件の記憶ログを記録中`;
+      : `${entries.length} 件の記憶ログを回復済み`;
 
   for (const stage of entries) {
     const card = document.createElement("article");
@@ -929,141 +1103,92 @@ function renderLogbook() {
   }
 }
 
-function renderFoundClues(stage) {
-  foundClues.innerHTML = "";
+function renderNarrativeWindow() {
+  const total = state.activeMessages.length;
+  const message = state.activeMessages[state.messageIndex] || "";
+  narrativeWindow.hidden = total === 0;
+  narrativeWindow.classList.toggle("is-clickable", total > 0);
+  narrativeMessage.textContent = message;
+  messageProgress.textContent = `${Math.min(state.messageIndex + 1, Math.max(total, 1))} / ${Math.max(total, 1)}`;
 
-  if (!state.inspectedClues.length) {
-    const emptyChip = document.createElement("p");
-    emptyChip.className = "found-clues-empty";
-    emptyChip.textContent = "未調査";
-    foundClues.append(emptyChip);
+  if (state.phase === "success" && state.messageIndex === total - 1) {
+    narrativeNext.textContent = getCurrentStage().id === "room-7" ? "クリックでエンディングへ" : "クリックで次の部屋へ";
     return;
   }
 
-  for (const clueIndex of state.inspectedClues) {
-    const clue = stage.clues[clueIndex];
-    if (!clue) {
-      continue;
-    }
-
-    const chip = document.createElement("button");
-    chip.type = "button";
-    chip.className = "found-clue-chip";
-    if (clueIndex === state.currentClueIndex) {
-      chip.classList.add("is-active");
-    }
-    chip.textContent = clue.title;
-    chip.addEventListener("click", () => {
-      state.currentClueIndex = clueIndex;
-      renderFoundClues(stage);
-      renderClue(stage, clueIndex);
-      updateHotspotSelection();
-    });
-    foundClues.append(chip);
-  }
-}
-
-function renderClue(stage, clueIndex) {
-  const clue = stage.clues[clueIndex];
-  const detail = getSceneDetail(stage);
-
-  if (!clue) {
-    inspectStatus.textContent = "光点をクリックして調べる";
-    inspectLine.textContent = detail.inspectLine;
-    clueViewer.innerHTML = `
-      <div class="empty-state">
-        この部屋の違和感を見つけると、ここに手がかりが表示される。
-      </div>
-    `;
+  if (state.phase === "intro" && state.messageIndex === total - 1) {
+    narrativeNext.textContent = "クリックで扉を操作";
     return;
   }
 
-  inspectStatus.textContent = `${stage.label} / ${clue.title}`;
-  inspectLine.textContent = `調査中: ${clue.title}。 ${clue.body}`;
-  clueViewer.innerHTML = "";
-  triggerTransientClass(clueViewer, "is-updated", 520);
-  triggerTransientClass(sceneArt, "is-inspecting", 540);
-
-  const article = document.createElement("article");
-  article.className = "clue-note";
-
-  const kicker = document.createElement("p");
-  kicker.className = "clue-kicker";
-  kicker.textContent = "Inspected";
-
-  const title = document.createElement("h3");
-  title.textContent = clue.title;
-
-  const body = document.createElement("p");
-  body.className = "clue-body";
-  body.textContent = clue.body;
-
-  article.append(kicker, title, body);
-
-  if (clue.mark) {
-    const markBox = document.createElement("div");
-    markBox.className = "clue-mark-box";
-
-    const label = document.createElement("p");
-    label.className = "hint-label";
-    label.textContent = "Observed Mark";
-
-    const mark = document.createElement("p");
-    mark.className = "clue-mark";
-    mark.innerHTML = clue.mark;
-
-    markBox.append(label, mark);
-    article.append(markBox);
-  }
-
-  clueViewer.append(article);
+  narrativeNext.textContent = "クリックで続く";
 }
 
-function renderSceneProps(stage) {
-  scenePropsLayer.innerHTML = "";
+function startNarrativeSequence(messages, phase, kicker) {
+  state.phase = phase;
+  state.activeMessages = messages.slice();
+  state.messageIndex = 0;
+  windowKicker.textContent = kicker;
+  renderNarrativeWindow();
 }
 
-function renderHotspots(stage) {
-  hotspotLayer.innerHTML = "";
-  const hotspots = getHotspotsForStage(stage);
-
-  for (const hotspot of hotspots) {
-    const button = document.createElement("button");
-    button.type = "button";
-    button.className = "hotspot-button";
-    button.style.left = `${hotspot.x}%`;
-    button.style.top = `${hotspot.y}%`;
-    button.setAttribute("aria-label", `${hotspot.title} を調べる`);
-    button.dataset.index = String(hotspot.index);
-    button.innerHTML = `
-      <span class="hotspot-ring" aria-hidden="true"></span>
-      <span class="hotspot-core" aria-hidden="true"></span>
-      <span class="hotspot-label" aria-hidden="true">${hotspot.index + 1}</span>
-    `;
-
-    button.addEventListener("click", () => {
-      state.currentClueIndex = hotspot.index;
-      if (!state.inspectedClues.includes(hotspot.index)) {
-        state.inspectedClues.push(hotspot.index);
-        renderFoundClues(stage);
-      }
-      renderClue(stage, state.currentClueIndex);
-      playSoundEffect("inspect");
-      updateHotspotSelection();
-    });
-
-    hotspotLayer.append(button);
-  }
-
-  updateHotspotSelection();
+function setDoorEnabled(isEnabled, prompt = "") {
+  const nextEnabled = Boolean(isEnabled);
+  doorButton.hidden = !nextEnabled;
+  doorButton.disabled = !nextEnabled;
+  doorPrompt.hidden = !nextEnabled;
+  doorPrompt.textContent = prompt;
 }
 
-function updateHotspotSelection() {
-  const hotspotButtons = hotspotLayer.querySelectorAll(".hotspot-button");
-  for (const button of hotspotButtons) {
-    const isActive = Number(button.dataset.index) === state.currentClueIndex;
-    button.classList.toggle("is-active", isActive);
+function renderPuzzle(stage) {
+  const scene = getStageScene(stage);
+  puzzleKicker.textContent = stage.label;
+  puzzleTitle.textContent = scene.puzzleTitle;
+  puzzleBody.innerHTML = "";
+
+  for (const paragraph of scene.puzzleBody) {
+    const node = document.createElement("p");
+    node.textContent = paragraph;
+    puzzleBody.append(node);
   }
+
+  answerForm.className = "answer-box";
+  promptText.textContent = stage.prompt;
+  hintText.textContent = stage.hintText;
+  feedback.textContent = "";
+  feedback.className = "feedback";
+  answerInput.value = "";
+}
+
+function enterDoorPhase() {
+  const stage = getCurrentStage();
+  const scene = getStageScene(stage);
+  state.phase = "door";
+  state.activeMessages = [];
+  state.messageIndex = 0;
+  narrativeWindow.hidden = true;
+  setDoorEnabled(true, scene.doorPrompt || "扉が反応している。");
+}
+
+function openPuzzle() {
+  if (state.phase !== "door") {
+    return;
+  }
+
+  setMenuOpen(false);
+  state.phase = "puzzle";
+  setDoorEnabled(false);
+  renderPuzzle(getCurrentStage());
+  setPuzzleOpen(true);
+}
+
+function closePuzzle() {
+  if (state.phase !== "puzzle") {
+    return;
+  }
+
+  setPuzzleOpen(false);
+  enterDoorPhase();
 }
 
 function playStageEntry() {
@@ -1074,38 +1199,25 @@ function playStageEntry() {
 function renderStage() {
   const stage = getCurrentStage();
   const roomNumber = stage.roomNumber;
-  const detail = getSceneDetail(stage);
+  const scene = getStageScene(stage);
 
   document.body.dataset.room = stage.id;
   stageLabel.textContent = stage.label;
   stageCounter.textContent = `${roomNumber} / 7 Rooms`;
   themeChip.textContent = stage.theme;
   ruleChip.textContent = stage.ruleTag;
-  sceneCaption.textContent = detail.caption;
-  sceneIllustration.src = getSceneIllustration(stage);
   stageTitle.textContent = stage.title;
-  stageText.textContent = stage.text;
-  objectiveText.textContent = stage.objective;
-  promptText.textContent = stage.prompt;
-  hintText.textContent = stage.hintText;
-  attemptText.textContent = `ミス ${state.attempts} / 3`;
-  feedback.textContent = stage.feedbackText;
-  feedback.className = "feedback";
-  answerInput.value = "";
-  state.currentClueIndex = null;
-  state.inspectedClues = [];
-
+  sceneIllustration.src = getSceneIllustration(stage);
   sceneArt.className = `scene-art ${stage.artClass}`;
-  renderSceneProps(stage);
-  renderHotspots(stage);
-  renderClue(stage, state.currentClueIndex);
-  renderFoundClues(stage);
-
-  renderTimeline();
+  state.revealedRecordStageId = null;
+  setMenuOpen(false);
+  setPuzzleOpen(false);
+  setDoorEnabled(false);
   renderLogbook();
   updateSaveStatus();
   updateAudioForStage();
   saveProgress();
+  startNarrativeSequence(scene.introMessages, "intro", scene.kicker || "Narrative");
   playStageEntry();
 }
 
@@ -1145,9 +1257,8 @@ function advanceStage() {
     state.maxReached = stages.length;
     window.setTimeout(() => {
       saveProgress();
-      renderTimeline();
-      renderLogbook();
       updateSaveStatus();
+      renderLogbook();
       showEnding(successEnding, "success");
     }, 420);
     return;
@@ -1158,13 +1269,84 @@ function advanceStage() {
   }, 320);
 }
 
+function finishNarrativeSequence() {
+  if (state.phase === "intro") {
+    enterDoorPhase();
+    return;
+  }
+
+  if (state.phase === "success") {
+    advanceStage();
+  }
+}
+
+function advanceNarrative() {
+  if (state.phase !== "intro" && state.phase !== "success") {
+    return;
+  }
+
+  if (state.messageIndex < state.activeMessages.length - 1) {
+    state.messageIndex += 1;
+    renderNarrativeWindow();
+    return;
+  }
+
+  finishNarrativeSequence();
+}
+
+function startSuccessSequence(stage) {
+  const scene = getStageScene(stage);
+  state.revealedRecordStageId = stage.id;
+  renderLogbook();
+  setPuzzleOpen(false);
+  setDoorEnabled(false);
+  startNarrativeSequence(scene.successMessages, "success", `${stage.label} / MEMORY LOG`);
+}
+
 function resetRun() {
+  setMenuOpen(false);
   showTitleScreen();
 }
 
 function retryCurrentRoom() {
   resetEphemeralState();
+  setPuzzleOpen(false);
+  setMenuOpen(false);
   renderStage();
+}
+
+function startFreshGame() {
+  state.stageIndex = 0;
+  state.maxReached = 0;
+  state.loadedFromSave = false;
+  state.revealedRecordStageId = null;
+  resetEphemeralState();
+  clearStoredProgress();
+  showGameScreen();
+  renderStage();
+}
+
+function continueSavedGame() {
+  if (!hasResumeData()) {
+    return;
+  }
+
+  state.revealedRecordStageId = null;
+  resetEphemeralState();
+  showGameScreen();
+  renderStage();
+}
+
+function clearProgressAndReturnToTitle() {
+  state.stageIndex = 0;
+  state.maxReached = 0;
+  state.loadedFromSave = false;
+  state.revealedRecordStageId = null;
+  resetEphemeralState();
+  clearStoredProgress();
+  renderLogbook();
+  updateSaveStatus();
+  showTitleScreen();
 }
 
 answerForm.addEventListener("submit", (event) => {
@@ -1174,7 +1356,7 @@ answerForm.addEventListener("submit", (event) => {
   const input = normalizeAnswer(answerInput.value);
 
   if (!input) {
-    feedback.textContent = "空欄では反応しない。";
+    feedback.textContent = "空欄では認証できない。";
     feedback.className = "feedback error";
     triggerTransientClass(answerForm, "is-invalid", 520);
     return;
@@ -1183,18 +1365,18 @@ answerForm.addEventListener("submit", (event) => {
   const isCorrect = stage.answer.some((answer) => normalizeAnswer(answer) === input);
 
   if (isCorrect) {
-    feedback.textContent = stage.successText || "扉のロックが外れる音がした。";
-    feedback.className = "feedback success";
+    playSoundEffect("success");
     triggerTransientClass(answerForm, "is-valid", 720);
     triggerTransientClass(sceneArt, "is-success", 720);
-    triggerTransientClass(feedback, "is-pop", 520);
-    playSoundEffect("success");
-    window.setTimeout(advanceStage, 700);
+    feedback.textContent = "認証を受理しました。";
+    feedback.className = "feedback success";
+    window.setTimeout(() => {
+      startSuccessSequence(stage);
+    }, 240);
     return;
   }
 
   state.attempts += 1;
-  attemptText.textContent = `ミス ${state.attempts} / 3`;
   feedback.textContent = "反応はない。部屋のルールをもう一度見直す必要がある。";
   feedback.className = "feedback error";
   triggerTransientClass(answerForm, "is-invalid", 620);
@@ -1212,13 +1394,44 @@ hintButton.addEventListener("click", () => {
 
   if (state.hintIndex >= stage.hints.length) {
     hintText.textContent = "これ以上のヒントはない。もう解けるはずだ。";
-    triggerTransientClass(hintBox, "is-pop", 520);
+    triggerTransientClass(feedback, "is-pop", 520);
     return;
   }
 
   hintText.textContent = stage.hints[state.hintIndex];
   state.hintIndex += 1;
-  triggerTransientClass(hintBox, "is-pop", 520);
+  triggerTransientClass(feedback, "is-pop", 520);
+});
+
+narrativeWindow.addEventListener("click", () => {
+  advanceNarrative();
+});
+
+narrativeWindow.addEventListener("keydown", (event) => {
+  if (event.key === "Enter" || event.key === " ") {
+    event.preventDefault();
+    advanceNarrative();
+  }
+});
+
+doorButton.addEventListener("click", () => {
+  openPuzzle();
+});
+
+menuToggle.addEventListener("click", () => {
+  setMenuOpen(!state.menuOpen);
+});
+
+menuCloseButton.addEventListener("click", () => {
+  setMenuOpen(false);
+});
+
+menuScrim.addEventListener("click", () => {
+  setMenuOpen(false);
+});
+
+closePuzzleButton.addEventListener("click", () => {
+  closePuzzle();
 });
 
 resetButton.addEventListener("click", () => {
@@ -1350,5 +1563,7 @@ for (const button of audioButtons) {
 
 loadProgress();
 syncAudioButtons();
+renderLogbook();
+updateSaveStatus();
 renderStage();
 showTitleScreen();

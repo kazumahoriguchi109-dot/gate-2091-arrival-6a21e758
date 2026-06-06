@@ -228,7 +228,7 @@ body[data-view="game"] .title-screen {
 .playfield,
 .scene-frame {
   width: 100vw;
-  height: 100vh;
+  height: 100dvh;
 }
 
 .scene-frame {
@@ -252,304 +252,453 @@ body[data-view="game"] .title-screen {
   inset: 0;
   z-index: 1;
   background:
-    linear-gradient(180deg, rgba(255, 255, 255, 0.02), rgba(0, 0, 0, 0.12)),
-    radial-gradient(circle at center, transparent 52%, rgba(0, 0, 0, 0.1));
+    linear-gradient(180deg, rgba(255, 255, 255, 0.03), rgba(0, 0, 0, 0.1)),
+    radial-gradient(circle at center, transparent 52%, rgba(0, 0, 0, 0.18));
   pointer-events: none;
 }
 
-.scene-overlay,
-.scene-props,
-.hotspot-layer {
+.scene-vignette,
+.transition-veil,
+.menu-scrim,
+.puzzle-overlay,
+.puzzle-backdrop {
   position: absolute;
   inset: 0;
 }
 
-.scene-overlay {
-  z-index: 4;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  padding: 18px;
+.scene-vignette {
+  z-index: 2;
   pointer-events: none;
+  background:
+    radial-gradient(circle at top, rgba(255, 255, 255, 0.16), transparent 30%),
+    linear-gradient(180deg, rgba(6, 12, 20, 0.04), rgba(6, 12, 20, 0.3));
 }
 
-.scene-overlay .ghost-button {
-  pointer-events: auto;
-}
-
-.overlay-row {
-  display: flex;
-  align-items: flex-start;
-  justify-content: space-between;
-  gap: 14px;
-}
-
-.overlay-row-bottom {
-  align-items: flex-end;
-}
-
-.overlay-copy {
-  display: grid;
-  gap: 10px;
-}
-
-.stage-badge,
-.meta-chip,
-.overlay-text,
-.hud-card,
+.scene-topbar,
+.narrative-window,
+.menu-toggle,
+.door-button,
+.door-prompt,
+.menu-drawer,
+.puzzle-panel,
 .answer-box,
 .feedback,
 .hint-box,
-.clue-viewer,
 .ending-dialog,
-.title-settings {
+.title-settings,
+.drawer-card {
   backdrop-filter: var(--blur);
 }
 
-.stage-badge {
-  display: inline-flex;
-  flex-direction: column;
-  gap: 6px;
-  padding: 12px 14px;
-  border-radius: 18px;
-  border: 1px solid rgba(255, 255, 255, 0.26);
-  background: rgba(255, 255, 255, 0.22);
-}
-
-.stage-badge span:first-child {
-  color: var(--accent);
-  font-size: 0.92rem;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-}
-
-.stage-badge span:last-child {
-  color: rgba(22, 28, 35, 0.88);
-  font-size: 0.92rem;
-}
-
-.stage-meta {
+.scene-topbar {
+  position: absolute;
+  inset: 22px 22px auto;
+  z-index: 7;
   display: flex;
-  gap: 8px;
-  flex-wrap: wrap;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 18px;
 }
 
-.meta-chip {
-  padding: 9px 13px;
-  border-radius: 999px;
-  border: 1px solid rgba(255, 255, 255, 0.28);
-  background: rgba(255, 255, 255, 0.18);
-  font-size: 0.84rem;
+.scene-heading {
+  max-width: min(760px, calc(100vw - 140px));
 }
 
-.overlay-text {
-  margin: 0;
-  width: fit-content;
-  padding: 10px 14px;
-  border-radius: 999px;
-  border: 1px solid rgba(255, 255, 255, 0.28);
-  background: rgba(18, 22, 28, 0.28);
-  color: rgba(255, 255, 255, 0.92);
-  font-size: 0.84rem;
-}
-
-.overlay-caption {
-  margin: 0;
-  max-width: 420px;
-  color: rgba(255, 255, 255, 0.92);
-  line-height: 1.7;
-  text-shadow: 0 2px 18px rgba(0, 0, 0, 0.28);
-}
-
-.scene-props {
-  display: none;
-}
-
-.hotspot-layer {
-  z-index: 3;
-}
-
-.transition-veil {
-  position: absolute;
-  inset: 0;
-  z-index: 5;
-  pointer-events: none;
-  opacity: 0;
-  background:
-    radial-gradient(circle at center, rgba(255, 255, 255, 0.26), transparent 34%),
-    linear-gradient(180deg, rgba(255, 255, 255, 0.14), rgba(30, 36, 45, 0.22));
-}
-
-.transition-veil.is-active {
-  animation: veilFlash 520ms ease;
-}
-
-.transition-veil.is-receding {
-  animation: veilRecede 900ms ease;
-}
-
-.hotspot-button {
-  position: absolute;
-  width: 58px;
-  height: 58px;
-  border: 0;
-  border-radius: 50%;
-  padding: 0;
-  cursor: pointer;
-  background: transparent;
-  transform: translate(-50%, -50%);
-}
-
-.hotspot-core,
-.hotspot-ring,
-.hotspot-label {
-  position: absolute;
-  inset: 50%;
-  transform: translate(-50%, -50%);
-}
-
-.hotspot-ring {
-  width: 58px;
-  height: 58px;
-  border-radius: 50%;
-  border: 1px solid rgba(245, 250, 255, 0.5);
-  background: radial-gradient(circle, rgba(184, 227, 250, 0.22), transparent 64%);
-  animation: hotspotPulse 2.2s ease-out infinite;
-}
-
-.hotspot-core {
-  width: 16px;
-  height: 16px;
-  border-radius: 50%;
-  background: radial-gradient(circle, #fefefe 0%, #b8e3fa 55%, rgba(184, 227, 250, 0.22) 100%);
-  box-shadow:
-    0 0 16px rgba(255, 255, 255, 0.88),
-    0 0 34px rgba(184, 227, 250, 0.48);
-}
-
-.hotspot-label {
-  color: #ffffff;
-  font-size: 0.72rem;
-  letter-spacing: 0.14em;
+.scene-stage-label,
+.drawer-eyebrow,
+.puzzle-kicker,
+.narrative-header {
+  font-family: "Cormorant Garamond", serif;
+  letter-spacing: 0.24em;
   text-transform: uppercase;
-  opacity: 0;
-  transition: opacity 180ms ease;
 }
 
-.hotspot-button:hover .hotspot-ring,
-.hotspot-button:focus-visible .hotspot-ring,
-.hotspot-button.is-active .hotspot-ring {
-  border-color: rgba(255, 255, 255, 0.94);
-}
-
-.hotspot-button:hover .hotspot-core,
-.hotspot-button:focus-visible .hotspot-core,
-.hotspot-button.is-active .hotspot-core {
-  transform: translate(-50%, -50%) scale(1.18);
-}
-
-.hotspot-button:hover .hotspot-label,
-.hotspot-button:focus-visible .hotspot-label,
-.hotspot-button.is-active .hotspot-label {
-  opacity: 1;
-}
-
-.hotspot-button:focus-visible {
-  outline: 2px solid rgba(255, 255, 255, 0.88);
-  outline-offset: 2px;
-}
-
-.hud-card {
-  position: absolute;
-  border-radius: 28px;
-  border: 1px solid var(--line);
-  background: var(--panel);
-  box-shadow: var(--shadow);
-}
-
-.utility-card {
-  top: 18px;
-  right: 18px;
-  z-index: 6;
-  width: min(300px, calc(100vw - 36px));
-  padding: 16px;
-}
-
-.save-panel {
-  padding: 0;
-}
-
-.status-label {
-  margin: 0;
+.scene-stage-label {
+  margin: 0 0 8px;
   color: var(--accent);
-  font-size: 0.9rem;
+  font-size: 0.95rem;
 }
 
-.save-value {
-  margin: 10px 0 0;
-  line-height: 1.6;
+.scene-stage-title {
+  margin: 0;
+  color: rgba(255, 255, 255, 0.96);
+  font-size: clamp(1.8rem, 3vw, 3rem);
+  line-height: 1.08;
+  text-shadow:
+    0 8px 28px rgba(8, 12, 18, 0.26),
+    0 0 42px rgba(255, 255, 255, 0.2);
 }
 
-.control-row {
+.scene-stage-meta {
   display: flex;
   gap: 10px;
   flex-wrap: wrap;
-  justify-content: flex-end;
   margin-top: 14px;
 }
 
-.story-card {
-  left: 18px;
-  bottom: 18px;
-  z-index: 6;
-  width: min(620px, calc(100vw - 392px));
-  max-height: min(41vh, 420px);
-  padding: 18px;
-  overflow: auto;
+.meta-chip {
+  padding: 10px 14px;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  background: rgba(16, 20, 26, 0.22);
+  color: rgba(255, 255, 255, 0.88);
+  font-size: 0.82rem;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.08);
 }
 
-.text-window h2 {
-  margin: 14px 0 10px;
-  font-size: clamp(1.9rem, 2.8vw, 3rem);
-  line-height: 1.08;
+.menu-toggle {
+  display: grid;
+  gap: 6px;
+  width: 62px;
+  height: 62px;
+  padding: 18px 15px;
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  border-radius: 22px;
+  background: rgba(9, 14, 21, 0.3);
+  box-shadow: 0 18px 48px rgba(6, 10, 18, 0.22);
 }
 
-.text-window > p {
+.menu-toggle span:not(.sr-only) {
+  display: block;
+  width: 100%;
+  height: 2px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.95);
+}
+
+.door-button {
+  position: absolute;
+  left: 50%;
+  top: 54%;
+  z-index: 8;
+  display: grid;
+  place-items: center;
+  width: 260px;
+  height: 280px;
+  border: 0;
+  padding: 0;
+  background: transparent;
+  transform: translate(-50%, -50%);
+  cursor: pointer;
+}
+
+.door-button[hidden] {
+  display: none;
+}
+
+.door-button:disabled {
+  pointer-events: none;
+  opacity: 0;
+}
+
+.door-button-orbit,
+.door-button-core,
+.door-button-text {
+  position: absolute;
+}
+
+.door-button-orbit {
+  width: 220px;
+  height: 220px;
+  border-radius: 50%;
+  border: 1px solid rgba(210, 235, 255, 0.26);
+  background:
+    radial-gradient(circle, rgba(201, 238, 255, 0.12), transparent 58%),
+    conic-gradient(from 0deg, rgba(180, 225, 250, 0) 0 20%, rgba(180, 225, 250, 0.18) 30%, rgba(180, 225, 250, 0) 42%);
+  animation: hotspotPulse 2.8s ease-out infinite;
+}
+
+.door-button-core {
+  width: 110px;
+  height: 110px;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.26);
+  background:
+    radial-gradient(circle at center, rgba(255, 255, 255, 0.74), rgba(184, 227, 250, 0.12) 60%, transparent 100%);
+  box-shadow:
+    0 0 22px rgba(255, 255, 255, 0.5),
+    0 0 64px rgba(184, 227, 250, 0.34);
+}
+
+.door-button-text {
+  bottom: 8px;
+  left: 50%;
+  width: max-content;
+  transform: translateX(-50%);
+  padding: 11px 18px;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  background: rgba(9, 14, 21, 0.34);
+  color: rgba(255, 255, 255, 0.96);
+  font-size: 0.86rem;
+  letter-spacing: 0.18em;
+}
+
+.door-button:hover .door-button-core,
+.door-button:focus-visible .door-button-core {
+  transform: scale(1.06);
+}
+
+.door-button:focus-visible {
+  outline: 2px solid rgba(255, 255, 255, 0.92);
+  outline-offset: 4px;
+}
+
+.door-prompt {
+  position: absolute;
+  left: 50%;
+  bottom: 240px;
+  z-index: 8;
   margin: 0;
-  line-height: 1.85;
+  padding: 12px 18px;
+  transform: translateX(-50%);
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  background: rgba(8, 14, 22, 0.3);
+  color: rgba(255, 255, 255, 0.94);
+  font-size: 0.84rem;
+  letter-spacing: 0.14em;
 }
 
-.window-header,
+.narrative-window {
+  position: absolute;
+  left: 20px;
+  right: 20px;
+  bottom: 20px;
+  z-index: 9;
+  padding: 22px 24px 26px;
+  border-radius: 34px;
+  border: 1px solid rgba(255, 255, 255, 0.52);
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.74), rgba(241, 241, 238, 0.58)),
+    radial-gradient(circle at top, rgba(255, 255, 255, 0.42), transparent 64%);
+  box-shadow:
+    0 28px 80px rgba(18, 24, 32, 0.22),
+    inset 0 1px 0 rgba(255, 255, 255, 0.6);
+  text-align: left;
+  cursor: default;
+}
+
+.narrative-window.is-clickable {
+  cursor: pointer;
+}
+
+.narrative-header,
 .panel-header,
-.logbook-header {
+.menu-drawer-header {
   display: flex;
   align-items: flex-start;
   justify-content: space-between;
   gap: 12px;
 }
 
-.window-header,
+.narrative-header,
 .panel-header {
   color: var(--muted);
   font-size: 0.86rem;
 }
 
-.objective-panel,
-.hint-box,
-.answer-box,
-.feedback,
-.clue-mark-box,
-.memo-card,
-.empty-state,
-.timeline-card {
-  border-radius: 18px;
-  border: 1px solid rgba(31, 40, 48, 0.08);
-  background: rgba(255, 255, 255, 0.4);
+.narrative-message {
+  margin: 16px 0 0;
+  font-size: clamp(2rem, 3vw, 3.05rem);
+  line-height: 1.42;
+  letter-spacing: 0.05em;
 }
 
-.objective-panel {
+.narrative-next {
+  margin: 16px 0 0;
+  color: rgba(44, 54, 66, 0.72);
+  font-size: 0.84rem;
+  letter-spacing: 0.18em;
+}
+
+.menu-scrim {
+  z-index: 10;
+  background: rgba(4, 8, 14, 0.42);
+}
+
+.menu-drawer {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 11;
+  width: min(430px, 88vw);
+  transform: translateX(100%);
+  transition: transform 260ms ease;
+  background:
+    linear-gradient(180deg, rgba(10, 13, 19, 0.88), rgba(14, 18, 25, 0.96)),
+    radial-gradient(circle at top right, rgba(62, 136, 188, 0.18), transparent 40%);
+  box-shadow: -28px 0 70px rgba(4, 8, 14, 0.3);
+}
+
+.menu-drawer.is-open {
+  transform: translateX(0);
+}
+
+.menu-drawer-inner {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  height: 100%;
+  padding: 26px 24px 24px;
+  color: rgba(255, 255, 255, 0.92);
+}
+
+.menu-drawer-header h3 {
+  margin: 8px 0 0;
+  font-size: clamp(2rem, 4vw, 3rem);
+}
+
+.menu-close-button {
+  width: 58px;
+  height: 58px;
+  border-radius: 18px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  background: rgba(255, 255, 255, 0.05);
+  color: rgba(255, 255, 255, 0.95);
+  font-size: 2.4rem;
+  line-height: 1;
+}
+
+.drawer-card {
+  padding: 18px;
+  border-radius: 26px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.06);
+}
+
+.drawer-card-logbook {
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+  flex: 1 1 auto;
+}
+
+.drawer-grid {
+  display: grid;
+  gap: 14px;
+}
+
+.drawer-control-row {
+  display: grid;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.save-value,
+.logbook-status,
+.memo-card p,
+.empty-state,
+.puzzle-body p,
+.feedback,
+.hint-box p:last-child {
+  margin: 0;
+  line-height: 1.74;
+}
+
+.save-value,
+.logbook-status,
+.memo-card p,
+.empty-state {
+  color: rgba(255, 255, 255, 0.76);
+}
+
+.memo-list {
+  display: grid;
+  gap: 12px;
   margin-top: 16px;
-  padding: 14px 16px;
+  min-height: 0;
+  overflow: auto;
+}
+
+.memo-card {
+  display: grid;
+  gap: 8px;
+  padding: 14px 15px;
+  border-radius: 18px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: rgba(255, 255, 255, 0.04);
+}
+
+.memo-card h4 {
+  margin: 0;
+  color: rgba(255, 255, 255, 0.98);
+}
+
+.drawer-return-button {
+  margin-top: auto;
+  padding: 18px 20px;
+  border-radius: 24px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  background: rgba(255, 255, 255, 0.08);
+  color: rgba(255, 255, 255, 0.98);
+  font-size: 1.24rem;
+  letter-spacing: 0.08em;
+}
+
+.puzzle-overlay {
+  z-index: 12;
+  display: grid;
+  place-items: center;
+  padding: 24px;
+}
+
+.puzzle-backdrop {
+  background:
+    linear-gradient(180deg, rgba(8, 12, 18, 0.4), rgba(8, 12, 18, 0.7)),
+    radial-gradient(circle at center, rgba(255, 255, 255, 0.08), transparent 40%);
+}
+
+.puzzle-panel {
+  position: relative;
+  z-index: 1;
+  width: min(720px, calc(100vw - 48px));
+  max-height: calc(100dvh - 48px);
+  overflow: auto;
+  padding: 24px;
+  border-radius: 34px;
+  border: 1px solid rgba(255, 255, 255, 0.34);
+  background:
+    linear-gradient(180deg, rgba(252, 252, 249, 0.86), rgba(239, 239, 235, 0.72)),
+    radial-gradient(circle at top, rgba(255, 255, 255, 0.4), transparent 50%);
+  box-shadow:
+    0 36px 90px rgba(8, 12, 18, 0.34),
+    inset 0 1px 0 rgba(255, 255, 255, 0.72);
+}
+
+.puzzle-panel-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.puzzle-panel-header h3 {
+  margin: 10px 0 0;
+  font-size: clamp(2rem, 3vw, 3rem);
+  line-height: 1.08;
+}
+
+.puzzle-close-button,
+.primary-button,
+.ghost-button {
+  padding: 11px 16px;
+  border-radius: 999px;
+  border: 1px solid transparent;
+  cursor: pointer;
+}
+
+.puzzle-close-button {
+  background: rgba(15, 23, 34, 0.08);
+  color: var(--text);
+  border-color: rgba(15, 23, 34, 0.08);
+}
+
+.puzzle-body {
+  display: grid;
+  gap: 10px;
+  margin-top: 22px;
 }
 
 .hint-label {
@@ -558,10 +707,18 @@ body[data-view="game"] .title-screen {
   font-size: 0.88rem;
 }
 
-.objective-panel p:last-child,
-.hint-box p:last-child {
-  margin: 0;
-  line-height: 1.75;
+.hint-box,
+.answer-box,
+.feedback,
+.empty-state {
+  border-radius: 18px;
+  border: 1px solid rgba(31, 40, 48, 0.08);
+  background: rgba(255, 255, 255, 0.42);
+}
+
+.hint-box {
+  margin-top: 20px;
+  padding: 16px;
 }
 
 .answer-box {
@@ -595,7 +752,7 @@ body[data-view="game"] .title-screen {
   padding: 14px 16px;
   border-radius: 14px;
   border: 1px solid rgba(31, 40, 48, 0.12);
-  background: rgba(255, 255, 255, 0.86);
+  background: rgba(255, 255, 255, 0.9);
   color: var(--text);
 }
 
@@ -608,14 +765,6 @@ body[data-view="game"] .title-screen {
   display: flex;
   justify-content: flex-end;
   margin-top: 12px;
-}
-
-.primary-button,
-.ghost-button {
-  padding: 11px 16px;
-  border-radius: 999px;
-  border: 1px solid transparent;
-  cursor: pointer;
 }
 
 .primary-button {
@@ -635,7 +784,6 @@ body[data-view="game"] .title-screen {
   margin-top: 14px;
   padding: 16px;
   color: var(--muted);
-  line-height: 1.72;
   white-space: pre-line;
 }
 
@@ -649,207 +797,35 @@ body[data-view="game"] .title-screen {
 
 .feedback.is-pop,
 .hint-box.is-pop,
-.clue-viewer.is-updated {
+.narrative-window.is-pop {
   animation: panelLift 520ms ease;
 }
 
-.hud-column {
-  position: absolute;
-  top: 164px;
-  right: 18px;
-  z-index: 6;
-  width: min(300px, calc(100vw - 36px));
-  display: grid;
-  gap: 14px;
-  height: calc(100vh - 182px);
-  grid-template-rows: minmax(0, 1.4fr) auto auto;
+.empty-state {
+  padding: 16px;
 }
 
-.inspect-panel,
-.progress-panel,
-.logbook {
-  position: relative;
-  padding: 18px;
-  overflow: hidden;
+.transition-veil {
+  z-index: 5;
+  pointer-events: none;
+  opacity: 0;
+  background:
+    radial-gradient(circle at center, rgba(255, 255, 255, 0.26), transparent 34%),
+    linear-gradient(180deg, rgba(255, 255, 255, 0.14), rgba(30, 36, 45, 0.22));
 }
 
-.inspect-panel {
-  min-height: 0;
-  display: flex;
-  flex-direction: column;
-  gap: 14px;
+.transition-veil.is-active {
+  animation: veilFlash 520ms ease;
 }
 
-.found-clues {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
-  margin-top: 0;
-}
-
-.found-clues-empty,
-.found-clue-chip {
-  padding: 8px 12px;
-  border-radius: 999px;
-  font-size: 0.78rem;
-}
-
-.found-clues-empty {
-  margin: 0;
-  border: 1px solid rgba(31, 40, 48, 0.08);
-  color: var(--muted);
-}
-
-.found-clue-chip {
-  border: 1px solid rgba(62, 136, 188, 0.18);
-  background: rgba(184, 227, 250, 0.16);
-  color: var(--text);
-  cursor: pointer;
-}
-
-.found-clue-chip.is-active {
-  border-color: rgba(62, 136, 188, 0.34);
-  background: rgba(184, 227, 250, 0.26);
-}
-
-.clue-viewer {
-  flex: 1 1 auto;
-  min-height: 0;
-  margin-top: 0;
-  padding: 18px;
-  overflow: auto;
-}
-
-.clue-note {
-  display: grid;
-  gap: 14px;
-}
-
-.clue-kicker {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  color: var(--accent);
-  font-size: 0.82rem;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-}
-
-.clue-kicker::before {
-  content: "";
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
-  background: var(--accent);
-}
-
-.clue-note h3 {
-  margin: 0;
-  font-size: 1.3rem;
-}
-
-.clue-body,
-.inspect-line,
-.memo-card p,
-.empty-state,
-.logbook-status {
-  margin: 0;
-  color: var(--muted);
-  line-height: 1.72;
-}
-
-.clue-mark-box {
-  padding: 14px 16px;
-}
-
-.clue-mark-box .hint-label {
-  margin-bottom: 10px;
-}
-
-.clue-mark {
-  margin: 0;
-  font-size: 1.04rem;
+.transition-veil.is-receding {
+  animation: veilRecede 900ms ease;
 }
 
 .mirror-text {
   display: inline-block;
   transform: scaleX(-1);
   letter-spacing: 0.08em;
-}
-
-.hint-box {
-  margin-top: 0;
-  padding: 15px 16px;
-}
-
-.progress-panel {
-  min-height: 0;
-  padding: 16px;
-  display: flex;
-  flex-direction: column;
-}
-
-.timeline {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 8px;
-  margin-top: 14px;
-}
-
-.timeline-card {
-  display: grid;
-  gap: 4px;
-  padding: 12px 13px;
-}
-
-.timeline-card strong {
-  color: var(--text);
-  font-size: 0.94rem;
-}
-
-.timeline-card span {
-  color: var(--muted);
-  font-size: 0.8rem;
-}
-
-.timeline-card.active {
-  border-color: rgba(62, 136, 188, 0.34);
-  background: rgba(184, 227, 250, 0.18);
-}
-
-.timeline-card.locked {
-  opacity: 0.48;
-}
-
-.logbook {
-  min-height: 0;
-  padding: 16px;
-  display: flex;
-  flex-direction: column;
-}
-
-.logbook-header h3 {
-  margin: 0;
-  font-size: 1.08rem;
-}
-
-.memo-list {
-  display: grid;
-  flex: 1 1 auto;
-  min-height: 0;
-  gap: 10px;
-  margin-top: 14px;
-  overflow: auto;
-}
-
-.memo-card h4 {
-  margin: 0 0 8px;
-}
-
-.memo-card {
-  display: grid;
-  gap: 8px;
-  padding: 14px 15px;
 }
 
 .ending-dialog {
@@ -1054,97 +1030,98 @@ body[data-view="game"] .title-screen {
 }
 
 @media (max-width: 1180px) {
-  .story-card {
-    width: min(560px, calc(100vw - 36px));
-    max-height: 34vh;
+  .scene-stage-title {
+    font-size: clamp(1.5rem, 3.2vw, 2.5rem);
   }
 
-  .hud-column {
-    top: auto;
-    right: 18px;
-    bottom: 18px;
-    width: min(320px, 34vw);
-    max-height: calc(100vh - 250px);
+  .narrative-message {
+    font-size: clamp(1.6rem, 2.4vw, 2.5rem);
   }
 }
 
 @media (max-width: 860px) {
-  body[data-view="game"] {
-    overflow: auto;
-  }
-
   .title-menu-block {
     margin-top: 38vh;
   }
 
-  .app-shell,
-  .experience,
-  .playfield,
-  .scene-frame {
-    width: 100%;
-    height: auto;
-    min-height: 100vh;
+  .scene-topbar {
+    inset: 14px 14px auto;
   }
 
-  .scene-frame {
-    display: grid;
-    gap: 14px;
+  .scene-heading {
+    max-width: calc(100vw - 104px);
+  }
+
+  .scene-stage-meta {
+    gap: 8px;
+  }
+
+  .menu-toggle {
+    width: 54px;
+    height: 54px;
+    padding: 16px 13px;
+    border-radius: 18px;
+  }
+
+  .door-button {
+    width: 220px;
+    height: 240px;
+  }
+
+  .door-button-orbit {
+    width: 180px;
+    height: 180px;
+  }
+
+  .door-button-core {
+    width: 94px;
+    height: 94px;
+  }
+
+  .door-prompt {
+    bottom: 216px;
+    width: calc(100vw - 40px);
+    text-align: center;
+  }
+
+  .narrative-window {
+    left: 12px;
+    right: 12px;
+    bottom: 12px;
+    padding: 18px 18px 22px;
+    border-radius: 28px;
+  }
+
+  .narrative-message {
+    font-size: clamp(1.35rem, 5vw, 2rem);
+  }
+
+  .menu-drawer {
+    width: min(420px, 100vw);
+  }
+
+  .puzzle-overlay {
     padding: 14px;
-    overflow: visible;
   }
 
-  .scene-art {
-    position: relative;
-    min-height: 52vh;
-    border-radius: 24px;
-  }
-
-  .utility-card,
-  .story-card,
-  .hud-column {
-    position: relative;
-    top: auto;
-    right: auto;
-    left: auto;
-    bottom: auto;
-    width: 100%;
-    max-height: none;
-  }
-
-  .story-card,
-  .utility-card,
-  .inspect-panel,
-  .progress-panel,
-  .logbook {
-    border-radius: 24px;
-  }
-
-  .hud-column {
-    display: grid;
-    gap: 14px;
-  }
-
-  .overlay-row {
-    flex-direction: column;
-  }
-
-  .overlay-row-bottom {
-    align-items: stretch;
-  }
-
-  .stage-meta {
-    justify-content: flex-start;
+  .puzzle-panel {
+    width: calc(100vw - 28px);
+    max-height: calc(100dvh - 28px);
+    padding: 18px;
+    border-radius: 28px;
   }
 
   .answer-row,
   .dialog-actions,
-  .title-settings-actions {
+  .title-settings-actions,
+  .drawer-control-row {
     flex-direction: column;
   }
 
   .answer-row input,
   .primary-button,
-  .ghost-button {
+  .ghost-button,
+  .puzzle-close-button {
     width: 100%;
   }
 }
@@ -1172,15 +1149,49 @@ body[data-view="game"] .title-screen {
     font-size: 0.84rem;
   }
 
-  .scene-overlay {
-    padding: 12px;
+  .scene-stage-title {
+    font-size: 1.3rem;
   }
 
-  .overlay-caption {
-    max-width: 100%;
+  .scene-stage-meta {
+    display: none;
   }
 
-  .timeline {
-    grid-template-columns: 1fr;
+  .menu-drawer-inner {
+    padding: 18px 16px 16px;
+  }
+
+  .menu-drawer-header h3 {
+    font-size: 2rem;
+  }
+
+  .narrative-message {
+    font-size: 1.12rem;
+    line-height: 1.56;
+  }
+
+  .narrative-next {
+    font-size: 0.74rem;
+  }
+
+  .door-button {
+    top: 52%;
+    width: 180px;
+    height: 200px;
+  }
+
+  .door-button-orbit {
+    width: 150px;
+    height: 150px;
+  }
+
+  .door-button-text {
+    padding: 10px 14px;
+    font-size: 0.74rem;
+  }
+
+  .door-prompt {
+    bottom: 204px;
+    font-size: 0.74rem;
   }
 }
