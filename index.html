@@ -15,20 +15,22 @@
   </head>
   <body>
     <div class="app-shell">
-      <header class="hero">
-        <div class="hero-copy-block">
+      <header class="topbar">
+        <div class="brand-block">
           <p class="eyebrow">Escape Chronicle</p>
           <h1>7 Rooms / 7 Doors</h1>
-          <p class="hero-copy">
+          <p class="lead-copy">
             閉じ込められた白い部屋から始まる、7つの密室。部屋を抜けるほど、
             ここがただの監禁場所ではないとわかっていく。
           </p>
         </div>
 
-        <div class="hero-status">
-          <p class="hero-status-label">Save Status</p>
-          <p id="save-status" class="hero-status-value">新規プレイ</p>
-          <div class="hero-buttons">
+        <div class="utility-panel">
+          <div class="save-panel">
+            <p class="status-label">Save Status</p>
+            <p id="save-status" class="save-value">新規プレイ</p>
+          </div>
+          <div class="control-row">
             <button id="audio-toggle" class="ghost-button" type="button">
               BGM OFF
             </button>
@@ -39,83 +41,119 @@
         </div>
       </header>
 
-      <main class="game-layout">
-        <section class="story-panel">
-          <div class="panel-header">
-            <span id="stage-label">Prologue</span>
-            <span id="stage-counter">0 / 7 Rooms</span>
+      <main class="experience">
+        <section class="scene-stack">
+          <div class="scene-frame">
+            <div id="scene-art" class="scene-art stage-intro">
+              <div class="scene-overlay">
+                <div class="overlay-row">
+                  <div class="stage-badge">
+                    <span id="stage-label">Prologue</span>
+                    <span id="stage-counter">0 / 7 Rooms</span>
+                  </div>
+                  <div class="stage-meta">
+                    <span id="theme-chip" class="meta-chip">導入</span>
+                    <span id="rule-chip" class="meta-chip">ルール説明</span>
+                  </div>
+                </div>
+                <div class="overlay-row overlay-row-bottom">
+                  <div class="overlay-copy">
+                    <p class="overlay-text">気になる場所をクリックして調べる</p>
+                    <p id="scene-caption" class="overlay-caption">
+                      目覚めたばかりの密室。違和感を拾うところから始まる。
+                    </p>
+                  </div>
+                  <button id="reset-button" class="ghost-button" type="button">
+                    タイトルへ戻る
+                  </button>
+                </div>
+              </div>
+              <img
+                id="scene-illustration"
+                class="scene-illustration"
+                src="assets/scene-intro.svg"
+                alt=""
+                aria-hidden="true"
+              />
+              <div id="scene-props" class="scene-props" aria-hidden="true"></div>
+              <div id="hotspot-layer" class="hotspot-layer"></div>
+              <div id="transition-veil" class="transition-veil" aria-hidden="true"></div>
+            </div>
           </div>
 
-          <div class="stage-meta">
-            <span id="theme-chip" class="meta-chip">導入</span>
-            <span id="rule-chip" class="meta-chip">ルール説明</span>
-          </div>
+          <section class="text-window">
+            <div class="window-header">
+              <span>Text Window</span>
+              <span id="attempt-text">ミス 0 / 3</span>
+            </div>
 
-          <div id="scene-art" class="scene-art stage-intro" aria-hidden="true"></div>
-
-          <div class="story-copy">
             <h2 id="stage-title">閉じた世界のはじまり</h2>
             <p id="stage-text">
               7部屋構成の完成版。最初はただの脱出に見えても、抜けるたびに世界の正体が見えてくる。
             </p>
-          </div>
 
-          <div class="story-notes">
-            <p class="hint-label">Current Objective</p>
-            <p id="objective-text">
-              まずはルールを覚える。各部屋の違和感は、あとでそのまま鍵になる。
+            <div class="objective-panel">
+              <p class="hint-label">Current Objective</p>
+              <p id="objective-text">
+                まずはルールを覚える。各部屋の違和感は、あとでそのまま鍵になる。
+              </p>
+            </div>
+
+            <form id="answer-form" class="answer-box">
+              <label for="answer-input" id="prompt-text">答えを入力</label>
+              <div class="answer-row">
+                <input
+                  id="answer-input"
+                  name="answer"
+                  type="text"
+                  autocomplete="off"
+                  spellcheck="false"
+                  inputmode="text"
+                />
+                <button type="submit" class="primary-button">送信</button>
+              </div>
+              <div class="action-row">
+                <button id="hint-button" type="button" class="ghost-button">
+                  ヒントを見る
+                </button>
+              </div>
+            </form>
+
+            <div id="feedback" class="feedback" aria-live="polite"></div>
+          </section>
+        </section>
+
+        <aside class="dossier-panel">
+          <section class="inspect-panel">
+            <div class="panel-header">
+              <span>Inspect</span>
+              <span id="inspect-status">光点をクリックして調べる</span>
+            </div>
+            <div id="found-clues" class="found-clues"></div>
+            <div id="clue-viewer" class="clue-viewer">
+              <div class="empty-state">
+                この部屋の違和感を見つけると、ここに手がかりが表示される。
+              </div>
+            </div>
+            <p id="inspect-line" class="inspect-line">
+              まだ何も手に取っていない。まずは部屋のどこかを調べる。
             </p>
-          </div>
-        </section>
 
-        <section class="play-panel">
-          <div class="panel-header">
-            <span>Clues</span>
-            <button id="reset-button" class="ghost-button" type="button">
-              タイトルへ戻る
-            </button>
-          </div>
-
-          <div id="clue-grid" class="clue-grid"></div>
-
-          <div id="hint-box" class="hint-box">
-            <p class="hint-label">Hint</p>
-            <p id="hint-text">行き詰まったら、その部屋だけにある読み方を疑う。</p>
-          </div>
-
-          <form id="answer-form" class="answer-box">
-            <label for="answer-input" id="prompt-text">答えを入力</label>
-            <div class="answer-row">
-              <input
-                id="answer-input"
-                name="answer"
-                type="text"
-                autocomplete="off"
-                spellcheck="false"
-                inputmode="text"
-              />
-              <button type="submit" class="primary-button">送信</button>
+            <div id="hint-box" class="hint-box">
+              <p class="hint-label">Hint</p>
+              <p id="hint-text">行き詰まったら、その部屋だけにある読み方を疑う。</p>
             </div>
-            <div class="action-row">
-              <button id="hint-button" type="button" class="ghost-button">
-                ヒントを見る
-              </button>
-              <span id="attempt-text">ミス 0 / 3</span>
+          </section>
+
+          <section class="progress-panel">
+            <div class="panel-header">
+              <span>Progress</span>
+              <span id="timeline-text">Room 0 / 7</span>
             </div>
-          </form>
+            <div id="timeline" class="timeline"></div>
+          </section>
 
-          <div id="feedback" class="feedback" aria-live="polite"></div>
-        </section>
-
-        <section class="journal-panel">
-          <div class="panel-header">
-            <span>Progress</span>
-            <span id="timeline-text">Room 0 / 7</span>
-          </div>
-
-          <div id="timeline" class="timeline"></div>
-
-          <div class="logbook">
+          <section class="logbook">
             <div class="logbook-header">
               <div>
                 <p class="hint-label">Logbook</p>
@@ -126,8 +164,8 @@
               </p>
             </div>
             <div id="memo-list" class="memo-list"></div>
-          </div>
-        </section>
+          </section>
+        </aside>
       </main>
     </div>
 

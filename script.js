@@ -412,11 +412,179 @@ const successEnding = {
     "扉の先にあったのは処刑場でも廃墟でもなく、風と光だけが静かに行き交う無人の居住区だった。避難室の記録どおり、人々はもっと先の生活圏へ移っていったのだろう。最後の表示は『おかえり』。あなたは遅れて目覚めた最後の到着者だったらしい。争いの終わったあとに残されたこの楽園で、少しずつ暮らし方を覚えていけばいい。急ぐ理由は、もうどこにもない。",
 };
 
+const hotspotLayouts = {
+  intro: [
+    { x: 21, y: 26 },
+    { x: 77, y: 24 },
+    { x: 25, y: 73 },
+    { x: 73, y: 68 },
+  ],
+  "room-1": [
+    { x: 18, y: 30 },
+    { x: 78, y: 43 },
+    { x: 41, y: 23 },
+    { x: 67, y: 72 },
+  ],
+  "room-2": [
+    { x: 22, y: 37 },
+    { x: 54, y: 30 },
+    { x: 76, y: 48 },
+    { x: 13, y: 74 },
+  ],
+  "room-3": [
+    { x: 34, y: 36 },
+    { x: 63, y: 36 },
+    { x: 42, y: 68 },
+    { x: 68, y: 63 },
+  ],
+  "room-4": [
+    { x: 22, y: 56 },
+    { x: 48, y: 36 },
+    { x: 74, y: 58 },
+    { x: 83, y: 21 },
+  ],
+  "room-5": [
+    { x: 18, y: 78 },
+    { x: 37, y: 73 },
+    { x: 57, y: 79 },
+    { x: 77, y: 70 },
+  ],
+  "room-6": [
+    { x: 70, y: 30 },
+    { x: 18, y: 36 },
+    { x: 76, y: 58 },
+    { x: 55, y: 48 },
+    { x: 33, y: 58 },
+  ],
+  "room-7": [
+    { x: 24, y: 44 },
+    { x: 39, y: 33 },
+    { x: 62, y: 33 },
+    { x: 77, y: 45 },
+  ],
+};
+
+const fallbackHotspots = [
+  { x: 20, y: 28 },
+  { x: 44, y: 34 },
+  { x: 70, y: 28 },
+  { x: 28, y: 72 },
+  { x: 55, y: 62 },
+  { x: 76, y: 70 },
+];
+
+const sceneDetails = {
+  intro: {
+    caption: "目覚めたばかりの密室。違和感を拾うところから始まる。",
+    inspectLine: "まだ何も手に取っていない。まずは部屋のどこかを調べる。",
+  },
+  "room-1": {
+    caption: "白く塗り固められた部屋。数字だけが不自然に浮いて見える。",
+    inspectLine: "表面はきれいすぎる。わざと残された痕だけが目につく。",
+  },
+  "room-2": {
+    caption: "金属と反射面の部屋。正面から見た情報ほど信用できない。",
+    inspectLine: "鏡面が多すぎる。視線を返してくるものばかりだ。",
+  },
+  "room-3": {
+    caption: "止まった時間を閉じ込めたような円形室。針は未来で止まっている。",
+    inspectLine: "数字札は散っているのに、答えだけはひとつに収束していく。",
+  },
+  "room-4": {
+    caption: "人のいない食堂。生活の気配だけが、席に残されたままだ。",
+    inspectLine: "ここには会話の余韻がない。残っているのは文章だけだ。",
+  },
+  "room-5": {
+    caption: "やわらかい光に満ちた温室。ここだけ空気が穏やかすぎる。",
+    inspectLine: "植物は整いすぎている。誰かが去ったあとも、世話だけは続いている。",
+  },
+  "room-6": {
+    caption: "保存ケースが並ぶ記録庫。ここでは年代の並びそのものが手がかりになる。",
+    inspectLine: "保管された板の順番に、施設の本当の用途が滲んでいる。",
+  },
+  "room-7": {
+    caption: "帰還のための最終室。出口ではなく、迎え入れるための扉に見える。",
+    inspectLine: "ここまでの見方が全部試される。最後の言葉だけが静かに待っている。",
+  },
+};
+
+const sceneProps = {
+  intro: [
+    { x: 21, y: 27, width: 82, height: 106, shape: "panel", label: "guide" },
+    { x: 77, y: 24, width: 90, height: 74, shape: "screen", label: "warning" },
+    { x: 25, y: 72, width: 92, height: 18, shape: "beam", label: "seam" },
+    { x: 73, y: 67, width: 58, height: 58, shape: "orb", label: "self" },
+  ],
+  "room-1": [
+    { x: 18, y: 30, width: 64, height: 110, shape: "scratch", label: "A" },
+    { x: 78, y: 43, width: 120, height: 136, shape: "shelf", label: "B" },
+    { x: 41, y: 18, width: 210, height: 22, shape: "light", label: "C" },
+    { x: 67, y: 72, width: 112, height: 112, shape: "clock", label: "D" },
+  ],
+  "room-2": [
+    { x: 22, y: 37, width: 112, height: 146, shape: "mirror", label: "01" },
+    { x: 54, y: 30, width: 152, height: 108, shape: "terminal", label: "log" },
+    { x: 76, y: 48, width: 116, height: 144, shape: "glass", label: "02" },
+    { x: 13, y: 74, width: 74, height: 74, shape: "stamp", label: "2091" },
+  ],
+  "room-3": [
+    { x: 50, y: 28, width: 240, height: 240, shape: "clock", label: "main" },
+    { x: 34, y: 36, width: 54, height: 108, shape: "tag", label: "A" },
+    { x: 63, y: 36, width: 54, height: 108, shape: "tag", label: "B" },
+    { x: 42, y: 68, width: 54, height: 108, shape: "tag", label: "C" },
+    { x: 68, y: 63, width: 54, height: 108, shape: "tag", label: "D" },
+  ],
+  "room-4": [
+    { x: 52, y: 67, width: 430, height: 112, shape: "table", label: "hall" },
+    { x: 22, y: 56, width: 88, height: 62, shape: "note", label: "A" },
+    { x: 48, y: 36, width: 88, height: 62, shape: "note", label: "B" },
+    { x: 74, y: 58, width: 88, height: 62, shape: "note", label: "C" },
+    { x: 83, y: 21, width: 132, height: 88, shape: "screen", label: "terminal" },
+  ],
+  "room-5": [
+    { x: 18, y: 78, width: 84, height: 110, shape: "plant", label: "A" },
+    { x: 37, y: 73, width: 84, height: 124, shape: "plant", label: "B" },
+    { x: 57, y: 79, width: 84, height: 122, shape: "plant", label: "C" },
+    { x: 77, y: 70, width: 84, height: 128, shape: "plant", label: "D" },
+    { x: 82, y: 26, width: 220, height: 158, shape: "window", label: "garden" },
+  ],
+  "room-6": [
+    { x: 16, y: 50, width: 180, height: 310, shape: "archive", label: "west" },
+    { x: 50, y: 50, width: 180, height: 310, shape: "archive", label: "center" },
+    { x: 84, y: 50, width: 180, height: 310, shape: "archive", label: "east" },
+    { x: 18, y: 36, width: 92, height: 62, shape: "record", label: "2087" },
+    { x: 33, y: 58, width: 92, height: 62, shape: "record", label: "2088" },
+    { x: 55, y: 48, width: 92, height: 62, shape: "record", label: "2089" },
+    { x: 70, y: 30, width: 92, height: 62, shape: "record", label: "2090" },
+    { x: 76, y: 58, width: 92, height: 62, shape: "record", label: "2091" },
+  ],
+  "room-7": [
+    { x: 50, y: 38, width: 270, height: 300, shape: "gate", label: "gate" },
+    { x: 24, y: 44, width: 92, height: 136, shape: "sigil", label: "A" },
+    { x: 39, y: 33, width: 92, height: 136, shape: "sigil", label: "B" },
+    { x: 62, y: 33, width: 92, height: 136, shape: "sigil", label: "C" },
+    { x: 77, y: 45, width: 92, height: 136, shape: "sigil", label: "D" },
+  ],
+};
+
+const sceneIllustrations = {
+  intro: "assets/scene-intro.svg",
+  "room-1": "assets/scene-room-1.svg",
+  "room-2": "assets/scene-room-2.svg",
+  "room-3": "assets/scene-room-3.svg",
+  "room-4": "assets/scene-room-4.svg",
+  "room-5": "assets/scene-room-5.svg",
+  "room-6": "assets/scene-room-6.svg",
+  "room-7": "assets/scene-room-7.svg",
+};
+
 const state = {
   stageIndex: 0,
   maxReached: 0,
   attempts: 0,
   hintIndex: 0,
+  currentClueIndex: null,
+  inspectedClues: [],
   audioEnabled: false,
   audioContext: null,
   oscillators: [],
@@ -432,7 +600,15 @@ const stageTitle = document.getElementById("stage-title");
 const stageText = document.getElementById("stage-text");
 const objectiveText = document.getElementById("objective-text");
 const promptText = document.getElementById("prompt-text");
-const clueGrid = document.getElementById("clue-grid");
+const sceneCaption = document.getElementById("scene-caption");
+const sceneIllustration = document.getElementById("scene-illustration");
+const scenePropsLayer = document.getElementById("scene-props");
+const hotspotLayer = document.getElementById("hotspot-layer");
+const clueViewer = document.getElementById("clue-viewer");
+const inspectStatus = document.getElementById("inspect-status");
+const foundClues = document.getElementById("found-clues");
+const inspectLine = document.getElementById("inspect-line");
+const hintBox = document.getElementById("hint-box");
 const hintText = document.getElementById("hint-text");
 const attemptText = document.getElementById("attempt-text");
 const feedback = document.getElementById("feedback");
@@ -443,6 +619,7 @@ const resetButton = document.getElementById("reset-button");
 const audioToggle = document.getElementById("audio-toggle");
 const clearSaveButton = document.getElementById("clear-save-button");
 const sceneArt = document.getElementById("scene-art");
+const transitionVeil = document.getElementById("transition-veil");
 const saveStatus = document.getElementById("save-status");
 const timeline = document.getElementById("timeline");
 const timelineText = document.getElementById("timeline-text");
@@ -454,6 +631,78 @@ const endingTitle = document.getElementById("ending-title");
 const endingText = document.getElementById("ending-text");
 const dialogPrimary = document.getElementById("dialog-primary");
 const dialogSecondary = document.getElementById("dialog-secondary");
+
+function triggerTransientClass(element, className, duration = 700) {
+  if (!element) {
+    return;
+  }
+
+  element.classList.remove(className);
+  void element.offsetWidth;
+  element.classList.add(className);
+
+  window.setTimeout(() => {
+    element.classList.remove(className);
+  }, duration);
+}
+
+function playSoundEffect(kind) {
+  if (!state.audioEnabled || !state.audioContext || !state.gainNode) {
+    return;
+  }
+
+  const now = state.audioContext.currentTime;
+  const oneShot = (config) => {
+    const oscillator = state.audioContext.createOscillator();
+    const gain = state.audioContext.createGain();
+
+    oscillator.type = config.type || "sine";
+    oscillator.frequency.setValueAtTime(config.frequency, now);
+    if (config.frequencyEnd) {
+      oscillator.frequency.exponentialRampToValueAtTime(config.frequencyEnd, now + config.duration);
+    }
+    if (config.detune) {
+      oscillator.detune.value = config.detune;
+    }
+
+    gain.gain.setValueAtTime(0.0001, now);
+    gain.gain.exponentialRampToValueAtTime(config.gain || 0.02, now + 0.02);
+    gain.gain.exponentialRampToValueAtTime(0.0001, now + config.duration);
+
+    oscillator.connect(gain);
+    gain.connect(state.gainNode);
+    oscillator.start(now);
+    oscillator.stop(now + config.duration + 0.04);
+  };
+
+  if (kind === "inspect") {
+    oneShot({ type: "triangle", frequency: 392, frequencyEnd: 466.16, duration: 0.14, gain: 0.012 });
+    return;
+  }
+
+  if (kind === "success") {
+    oneShot({ type: "sine", frequency: 392, frequencyEnd: 523.25, duration: 0.24, gain: 0.016 });
+    oneShot({ type: "triangle", frequency: 523.25, frequencyEnd: 659.25, duration: 0.32, gain: 0.014 });
+    return;
+  }
+
+  if (kind === "error") {
+    oneShot({ type: "sawtooth", frequency: 196, frequencyEnd: 138.59, duration: 0.22, gain: 0.012 });
+    return;
+  }
+
+  if (kind === "ending-bad") {
+    oneShot({ type: "square", frequency: 220, frequencyEnd: 164.81, duration: 0.28, gain: 0.012 });
+    oneShot({ type: "triangle", frequency: 164.81, frequencyEnd: 146.83, duration: 0.4, gain: 0.01 });
+    return;
+  }
+
+  if (kind === "ending-true") {
+    oneShot({ type: "sine", frequency: 329.63, frequencyEnd: 392, duration: 0.3, gain: 0.016 });
+    oneShot({ type: "triangle", frequency: 392, frequencyEnd: 523.25, duration: 0.42, gain: 0.014 });
+    oneShot({ type: "sine", frequency: 523.25, frequencyEnd: 659.25, duration: 0.56, gain: 0.012 });
+  }
+}
 
 function normalizeAnswer(value) {
   return value.trim().toLowerCase().replace(/\s+/g, "");
@@ -514,6 +763,27 @@ function getCurrentRoomNumber() {
 
 function getCompletedRoomCount() {
   return Math.max(0, Math.min(7, state.maxReached - 1));
+}
+
+function getHotspotsForStage(stage) {
+  const layout = hotspotLayouts[stage.id] || fallbackHotspots;
+  return stage.clues.map((clue, index) => {
+    const point = layout[index] || fallbackHotspots[index] || fallbackHotspots[0];
+    return {
+      ...clue,
+      x: point.x,
+      y: point.y,
+      index,
+    };
+  });
+}
+
+function getSceneDetail(stage) {
+  return sceneDetails[stage.id] || sceneDetails.intro;
+}
+
+function getSceneIllustration(stage) {
+  return sceneIllustrations[stage.id] || sceneIllustrations.intro;
 }
 
 function updateSaveStatus() {
@@ -601,14 +871,176 @@ function renderLogbook() {
   }
 }
 
+function renderFoundClues(stage) {
+  foundClues.innerHTML = "";
+
+  if (!state.inspectedClues.length) {
+    const emptyChip = document.createElement("p");
+    emptyChip.className = "found-clues-empty";
+    emptyChip.textContent = "未調査";
+    foundClues.append(emptyChip);
+    return;
+  }
+
+  for (const clueIndex of state.inspectedClues) {
+    const clue = stage.clues[clueIndex];
+    if (!clue) {
+      continue;
+    }
+
+    const chip = document.createElement("button");
+    chip.type = "button";
+    chip.className = "found-clue-chip";
+    if (clueIndex === state.currentClueIndex) {
+      chip.classList.add("is-active");
+    }
+    chip.textContent = clue.title;
+    chip.addEventListener("click", () => {
+      state.currentClueIndex = clueIndex;
+      renderFoundClues(stage);
+      renderClue(stage, clueIndex);
+      updateHotspotSelection();
+    });
+    foundClues.append(chip);
+  }
+}
+
+function renderClue(stage, clueIndex) {
+  const clue = stage.clues[clueIndex];
+  const detail = getSceneDetail(stage);
+
+  if (!clue) {
+    inspectStatus.textContent = "光点をクリックして調べる";
+    inspectLine.textContent = detail.inspectLine;
+    clueViewer.innerHTML = `
+      <div class="empty-state">
+        この部屋の違和感を見つけると、ここに手がかりが表示される。
+      </div>
+    `;
+    return;
+  }
+
+  inspectStatus.textContent = `${stage.label} / ${clue.title}`;
+  inspectLine.textContent = `調査中: ${clue.title}。 ${clue.body}`;
+  clueViewer.innerHTML = "";
+  triggerTransientClass(clueViewer, "is-updated", 520);
+  triggerTransientClass(sceneArt, "is-inspecting", 540);
+
+  const article = document.createElement("article");
+  article.className = "clue-note";
+
+  const kicker = document.createElement("p");
+  kicker.className = "clue-kicker";
+  kicker.textContent = "Inspected";
+
+  const title = document.createElement("h3");
+  title.textContent = clue.title;
+
+  const body = document.createElement("p");
+  body.className = "clue-body";
+  body.textContent = clue.body;
+
+  article.append(kicker, title, body);
+
+  if (clue.mark) {
+    const markBox = document.createElement("div");
+    markBox.className = "clue-mark-box";
+
+    const label = document.createElement("p");
+    label.className = "hint-label";
+    label.textContent = "Observed Mark";
+
+    const mark = document.createElement("p");
+    mark.className = "clue-mark";
+    mark.innerHTML = clue.mark;
+
+    markBox.append(label, mark);
+    article.append(markBox);
+  }
+
+  clueViewer.append(article);
+}
+
+function renderSceneProps(stage) {
+  scenePropsLayer.innerHTML = "";
+  const props = sceneProps[stage.id] || [];
+
+  for (const item of props) {
+    const prop = document.createElement("div");
+    prop.className = "scene-prop";
+    prop.dataset.shape = item.shape;
+    if (item.label) {
+      prop.dataset.label = item.label;
+    }
+    prop.style.left = `${item.x}%`;
+    prop.style.top = `${item.y}%`;
+    prop.style.width = `${item.width}px`;
+    prop.style.height = `${item.height}px`;
+    prop.style.transform = "translate(-50%, -50%)";
+    scenePropsLayer.append(prop);
+  }
+}
+
+function renderHotspots(stage) {
+  hotspotLayer.innerHTML = "";
+  const hotspots = getHotspotsForStage(stage);
+
+  for (const hotspot of hotspots) {
+    const button = document.createElement("button");
+    button.type = "button";
+    button.className = "hotspot-button";
+    button.style.left = `${hotspot.x}%`;
+    button.style.top = `${hotspot.y}%`;
+    button.setAttribute("aria-label", `${hotspot.title} を調べる`);
+    button.dataset.index = String(hotspot.index);
+    button.innerHTML = `
+      <span class="hotspot-ring" aria-hidden="true"></span>
+      <span class="hotspot-core" aria-hidden="true"></span>
+      <span class="hotspot-label" aria-hidden="true">${hotspot.index + 1}</span>
+    `;
+
+    button.addEventListener("click", () => {
+      state.currentClueIndex = hotspot.index;
+      if (!state.inspectedClues.includes(hotspot.index)) {
+        state.inspectedClues.push(hotspot.index);
+        renderFoundClues(stage);
+      }
+      renderClue(stage, state.currentClueIndex);
+      playSoundEffect("inspect");
+      updateHotspotSelection();
+    });
+
+    hotspotLayer.append(button);
+  }
+
+  updateHotspotSelection();
+}
+
+function updateHotspotSelection() {
+  const hotspotButtons = hotspotLayer.querySelectorAll(".hotspot-button");
+  for (const button of hotspotButtons) {
+    const isActive = Number(button.dataset.index) === state.currentClueIndex;
+    button.classList.toggle("is-active", isActive);
+  }
+}
+
+function playStageEntry() {
+  triggerTransientClass(sceneArt, "is-entering", 900);
+  triggerTransientClass(transitionVeil, "is-receding", 900);
+}
+
 function renderStage() {
   const stage = getCurrentStage();
   const roomNumber = stage.roomNumber;
+  const detail = getSceneDetail(stage);
 
+  document.body.dataset.room = stage.id;
   stageLabel.textContent = stage.label;
   stageCounter.textContent = `${roomNumber} / 7 Rooms`;
   themeChip.textContent = stage.theme;
   ruleChip.textContent = stage.ruleTag;
+  sceneCaption.textContent = detail.caption;
+  sceneIllustration.src = getSceneIllustration(stage);
   stageTitle.textContent = stage.title;
   stageText.textContent = stage.text;
   objectiveText.textContent = stage.objective;
@@ -618,50 +1050,39 @@ function renderStage() {
   feedback.textContent = stage.feedbackText;
   feedback.className = "feedback";
   answerInput.value = "";
-  answerInput.focus();
+  state.currentClueIndex = null;
+  state.inspectedClues = [];
 
   sceneArt.className = `scene-art ${stage.artClass}`;
-  clueGrid.innerHTML = "";
-
-  for (const clue of stage.clues) {
-    const card = document.createElement("article");
-    card.className = "clue-card";
-
-    const title = document.createElement("h3");
-    title.textContent = clue.title;
-
-    const body = document.createElement("p");
-    body.textContent = clue.body;
-    card.append(title, body);
-
-    if (clue.mark) {
-      const mark = document.createElement("p");
-      mark.className = "clue-mark";
-      mark.innerHTML = clue.mark;
-      card.append(mark);
-    }
-
-    clueGrid.append(card);
-  }
+  renderSceneProps(stage);
+  renderHotspots(stage);
+  renderClue(stage, state.currentClueIndex);
+  renderFoundClues(stage);
 
   renderTimeline();
   renderLogbook();
   updateSaveStatus();
   updateAudioForStage();
   saveProgress();
+  playStageEntry();
 }
 
 function showEnding(data, mode) {
   endingKind.textContent = data.kind;
   endingTitle.textContent = data.title;
   endingText.textContent = data.text;
+  dialog.classList.remove("success-mode", "bad-mode");
 
   if (mode === "success") {
     dialogPrimary.textContent = "最初から遊ぶ";
     dialogSecondary.textContent = "閉じる";
+    dialog.classList.add("success-mode");
+    playSoundEffect("ending-true");
   } else {
     dialogPrimary.textContent = "この部屋からやり直す";
     dialogSecondary.textContent = "タイトルへ";
+    dialog.classList.add("bad-mode");
+    playSoundEffect("ending-bad");
   }
 
   dialog.dataset.mode = mode;
@@ -669,6 +1090,9 @@ function showEnding(data, mode) {
 }
 
 function advanceStage() {
+  triggerTransientClass(sceneArt, "is-transitioning", 900);
+  triggerTransientClass(transitionVeil, "is-active", 520);
+
   state.stageIndex += 1;
   state.maxReached = Math.max(state.maxReached, state.stageIndex);
   state.attempts = 0;
@@ -677,15 +1101,19 @@ function advanceStage() {
   if (state.stageIndex >= stages.length) {
     state.stageIndex = stages.length - 1;
     state.maxReached = stages.length;
-    saveProgress();
-    renderTimeline();
-    renderLogbook();
-    updateSaveStatus();
-    showEnding(successEnding, "success");
+    window.setTimeout(() => {
+      saveProgress();
+      renderTimeline();
+      renderLogbook();
+      updateSaveStatus();
+      showEnding(successEnding, "success");
+    }, 420);
     return;
   }
 
-  renderStage();
+  window.setTimeout(() => {
+    renderStage();
+  }, 320);
 }
 
 function resetRun() {
@@ -693,6 +1121,8 @@ function resetRun() {
   state.maxReached = 0;
   state.attempts = 0;
   state.hintIndex = 0;
+  state.currentClueIndex = null;
+  state.inspectedClues = [];
   state.loadedFromSave = false;
   clearStoredProgress();
   renderStage();
@@ -701,6 +1131,8 @@ function resetRun() {
 function retryCurrentRoom() {
   state.attempts = 0;
   state.hintIndex = 0;
+  state.currentClueIndex = null;
+  state.inspectedClues = [];
   renderStage();
 }
 
@@ -713,6 +1145,7 @@ answerForm.addEventListener("submit", (event) => {
   if (!input) {
     feedback.textContent = "空欄では反応しない。";
     feedback.className = "feedback error";
+    triggerTransientClass(answerForm, "is-invalid", 520);
     return;
   }
 
@@ -721,6 +1154,10 @@ answerForm.addEventListener("submit", (event) => {
   if (isCorrect) {
     feedback.textContent = "扉のロックが外れる音がした。";
     feedback.className = "feedback success";
+    triggerTransientClass(answerForm, "is-valid", 720);
+    triggerTransientClass(sceneArt, "is-success", 720);
+    triggerTransientClass(feedback, "is-pop", 520);
+    playSoundEffect("success");
     window.setTimeout(advanceStage, 700);
     return;
   }
@@ -729,6 +1166,10 @@ answerForm.addEventListener("submit", (event) => {
   attemptText.textContent = `ミス ${state.attempts} / 3`;
   feedback.textContent = "反応はない。部屋のルールをもう一度見直す必要がある。";
   feedback.className = "feedback error";
+  triggerTransientClass(answerForm, "is-invalid", 620);
+  triggerTransientClass(sceneArt, "is-error", 620);
+  triggerTransientClass(feedback, "is-pop", 520);
+  playSoundEffect("error");
 
   if (stage.badEnding && state.attempts >= 3) {
     window.setTimeout(() => showEnding(stage.badEnding, "bad"), 300);
@@ -740,11 +1181,13 @@ hintButton.addEventListener("click", () => {
 
   if (state.hintIndex >= stage.hints.length) {
     hintText.textContent = "これ以上のヒントはない。もう解けるはずだ。";
+    triggerTransientClass(hintBox, "is-pop", 520);
     return;
   }
 
   hintText.textContent = stage.hints[state.hintIndex];
   state.hintIndex += 1;
+  triggerTransientClass(hintBox, "is-pop", 520);
 });
 
 resetButton.addEventListener("click", () => {

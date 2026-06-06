@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900" fill="none">
+  <defs>
+    <linearGradient id="bg" x1="800" y1="0" x2="800" y2="900" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#1A1D2C"/>
+      <stop offset=".6" stop-color="#10111B"/>
+      <stop offset="1" stop-color="#07080D"/>
+    </linearGradient>
+  </defs>
+  <rect width="1600" height="900" fill="url(#bg)"/>
+  <rect x="86" y="150" width="286" height="510" rx="26" fill="#DAE1FF" fill-opacity=".04" stroke="#CCD8FF" stroke-opacity=".12"/>
+  <rect x="658" y="150" width="286" height="510" rx="26" fill="#DAE1FF" fill-opacity=".04" stroke="#CCD8FF" stroke-opacity=".12"/>
+  <rect x="1228" y="150" width="286" height="510" rx="26" fill="#DAE1FF" fill-opacity=".04" stroke="#CCD8FF" stroke-opacity=".12"/>
+  <path d="M120 208h220M120 260h220M120 312h220M120 364h220M120 416h220" stroke="#D9E2FF" stroke-opacity=".08" stroke-width="20" stroke-linecap="round"/>
+  <path d="M692 208h220M692 260h220M692 312h220M692 364h220M692 416h220" stroke="#D9E2FF" stroke-opacity=".08" stroke-width="20" stroke-linecap="round"/>
+  <path d="M1262 208h220M1262 260h220M1262 312h220M1262 364h220M1262 416h220" stroke="#D9E2FF" stroke-opacity=".08" stroke-width="20" stroke-linecap="round"/>
+  <rect x="198" y="232" width="128" height="68" rx="14" fill="#E8EDFF" fill-opacity=".08" stroke="#E8EDFF" stroke-opacity=".18"/>
+  <rect x="418" y="474" width="128" height="68" rx="14" fill="#E8EDFF" fill-opacity=".08" stroke="#E8EDFF" stroke-opacity=".18"/>
+  <rect x="804" y="394" width="128" height="68" rx="14" fill="#E8EDFF" fill-opacity=".08" stroke="#E8EDFF" stroke-opacity=".18"/>
+  <rect x="1092" y="250" width="128" height="68" rx="14" fill="#E8EDFF" fill-opacity=".08" stroke="#E8EDFF" stroke-opacity=".18"/>
+  <rect x="1298" y="476" width="128" height="68" rx="14" fill="#E8EDFF" fill-opacity=".08" stroke="#E8EDFF" stroke-opacity=".18"/>
+  <rect y="676" width="1600" height="224" fill="#0B0D14" fill-opacity=".52"/>
+</svg>
