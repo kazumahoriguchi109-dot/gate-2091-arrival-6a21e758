@@ -1,4 +1,4 @@
-const STORAGE_KEY = "seven-rooms-progress-v1";
+const STORAGE_KEY = "seven-rooms-progress-v2";
 
 const stages = [
   {
@@ -9,77 +9,80 @@ const stages = [
     ruleTag: "ルール説明",
     title: "閉じた世界のはじまり",
     text:
-      "目が覚めると、白い壁と静かな照明しかない部屋にいた。出口は1つだけ。ここがどういう場所なのかはわからない。ただ、各部屋に1つずつ妙な読み方があることだけは、すぐに気づくはずだ。",
+      "目が覚めると、白い壁と静かな照明しかない部屋にいた。出口は1つだけ。ここが何のための施設なのかはまだわからない。ただ、各部屋を抜けるたびに記憶ログと認証番号が回復し、最後の部屋でその意味がつながるらしい。",
     objective:
-      "7部屋を抜ける。最初は各部屋のルールを覚え、後半でそれらを組み合わせる。",
+      "7つの部屋を抜け、各部屋の答えと一緒に記憶ログと認証番号を回収する。",
     prompt: "準備ができたら「はじめる」と入力",
     answer: ["はじめる"],
     hintText: "開始の言葉そのものが鍵になっている。",
-    hints: ["最初は深読みしなくていい。始める合図を入力する。"],
+    hints: [
+      "最初は深読みしなくていい。始める合図を入力する。",
+      "各部屋のクリア後、右側の手がかり欄に記憶ログと認証番号が蓄積される。",
+    ],
     artClass: "stage-intro",
-    feedbackText: "密室のルールは、部屋ごとに1つずつある。",
+    feedbackText: "密室のルールは、部屋ごとに1つずつある。最後は回復した記憶を並べることになる。",
     clues: [
       {
         title: "進め方",
-        body: "各部屋には1つのルールがある。順番、鏡、文字目のような見方の違いを掴むのが先だ。",
+        body: "各部屋には1つの読み方がある。順番、鏡、文字目、年代順のような見方の違いを掴むのが先だ。",
       },
       {
-        title: "バッドエンド",
-        body: "各部屋で3回連続して間違えると、その部屋専用の小さな失敗エンドになる。",
+        title: "回収対象",
+        body: "各部屋を抜けるたびに、その部屋の答えだけでなく、記憶ログと認証番号も記録される。",
       },
       {
-        title: "伏線",
-        body: "前の部屋で見つけたルールは、後ろの部屋でもそのまま必要になる。",
+        title: "最終室",
+        body: "最後の帰還ゲート室では、回復した記憶ログから認証番号に対応する文字を抜き出すことになる。",
       },
       {
-        title: "主人公",
-        body: "主人公は名前のないあなた自身。特別な設定はないが、最後に理由は見えてくる。",
+        title: "失敗条件",
+        body: "各部屋で3回連続して間違えると、その部屋専用の失敗エンドに分岐する。",
       },
     ],
   },
   {
     id: "room-1",
-    label: "Room 1",
+    label: "ROOM 01",
     roomNumber: 1,
     theme: "白い封鎖室",
-    ruleTag: "順番",
+    ruleTag: "観察力",
     title: "白い封鎖室",
     text:
-      "蛍光灯の白さだけがやけに眩しい。窓はなく、空気は無臭。壁のプレートにはこう刻まれている。『AからDまで、順に数字を入れて』。",
+      "蛍光灯の白さだけがやけに眩しい。窓はなく、空気は無臭。壁のプレートにはこう刻まれている。『AからDまで、順に数字を読め』。",
     objective: "A-Dの手がかりから4桁の数字を作る。",
     prompt: "4桁の数字を入力",
-    answer: ["1324"],
-    hintText: "部屋の中にある4つの手がかりは、A-Dの順番で読むだけでいい。",
+    answer: ["5123"],
+    hintText: "部屋の中にある4つの数字は、A-Dの順番で読むだけでいい。",
     hints: [
       "A, B, C, D の順に、それぞれの数字だけ拾う。",
-      "Aは1本、Bは3冊、Cは2回、Dは4時。答えは 1324。",
+      "Aは5、Bは1、Cは2、Dは3。答えは 5123。",
     ],
     artClass: "stage-1",
     feedbackText: "壁の静けさに比べて、数字だけが妙に明確だ。",
-    memo: {
-      title: "Room 1: 順番",
-      body: "A-Dの順で読むルールを見つけた。以後、この施設は手がかりの並べ方そのものを試してくる。",
-    },
+    successText:
+      "認証ログを回収した。\n記憶ログと認証番号が手がかり欄に追加された。",
+    memoryLog: "シロイルームニチイサナオト",
+    authNumbers: [8],
     clues: [
       {
         title: "手がかり A",
-        body: "白い塗装の上に、爪で引いたような細い傷が残っている。",
-        mark: "線は1本だけ。",
+        body: "白い壁の隅に、黒い塗料で一文字だけ残されている。",
+        mark: "A = 5",
       },
       {
         title: "手がかり B",
-        body: "几帳面に並んだ本の列に、不自然な空白がある。",
-        mark: "抜けている本は3冊。",
+        body: "床の継ぎ目に沿って、かすれた数字が見える。",
+        mark: "B = 1",
       },
       {
         title: "手がかり C",
-        body: "一定の間隔で、照明がわずかに明滅する。",
-        mark: "点滅は2回。",
+        body: "照明パネルの端に、小さく刻印された番号がある。",
+        mark: "C = 2",
       },
       {
         title: "手がかり D",
-        body: "秒針は動かない。時刻だけがこちらを見ている。",
-        mark: "4時で止まっている。",
+        body: "扉脇の封鎖ランプだけが、別の番号を示している。",
+        mark: "D = 3",
       },
     ],
     badEnding: {
@@ -91,47 +94,47 @@ const stages = [
   },
   {
     id: "room-2",
-    label: "Room 2",
+    label: "ROOM 02",
     roomNumber: 2,
     theme: "反転記録室",
-    ruleTag: "鏡読み",
+    ruleTag: "視点転換",
     title: "反転記録室",
     text:
       "壁も机も鏡面に近い金属でできた部屋。中央の端末だけが普通の文字を映している。表示は一行。『この部屋では、最初に見えたものを疑え』。",
-    objective: "鏡として読んだときに現れる合言葉を見つける。",
-    prompt: "合言葉をひらがなで入力",
-    answer: ["みらい"],
-    hintText: "裏から読むのではなく、鏡として読む。",
+    objective: "鏡文字と反転文字から、正しい認証語を読む。",
+    prompt: "認証語を入力",
+    answer: ["PHASE 1"],
+    hintText: "裏から読むのではなく、鏡として読んだときの形を考える。",
     hints: [
-      "文字は反対から読むのではなく、鏡越しに見た形をそのまま読む。",
-      "最初の札は『かがみ』、端末は『かがみの つぎを よめ』。次の札は『みらい』になる。",
+      "反転している英字を、鏡に映したときの並びへ戻す。",
+      "札の語は『PHASE 1』になる。",
     ],
     artClass: "stage-2",
     feedbackText: "見えている文字と、読める文字が一致しない。",
-    memo: {
-      title: "Room 2: 鏡読み",
-      body: "この施設には鏡として読む表示がある。反転したままでも、意味を持つものが混ざっている。",
-    },
+    successText:
+      "認証ログを回収した。\n記憶ログと認証番号が手がかり欄に追加された。",
+    memoryLog: "キケンハカガミノムコウニアル",
+    authNumbers: [1],
     clues: [
       {
         title: "鏡札 01",
-        body: "磨かれた板に、見慣れない文字が浮かんでいる。",
-        mark: '<span class="mirror-text">みがか</span>',
+        body: "磨かれた板に、反転した英字が白く浮かんでいる。",
+        mark: '<span class="mirror-text">1 ESAHP</span>',
       },
       {
         title: "端末ログ",
         body: "これだけは普通に読める。",
-        mark: "『かがみの つぎを よめ』",
+        mark: "『反転を疑え』",
       },
       {
         title: "鏡札 02",
-        body: "薄く青く発光する札。こちらも裏返ったように読みにくい。",
-        mark: '<span class="mirror-text">いらみ</span>',
+        body: "青く発光する札。上下も左右も信用できない。",
+        mark: "PHASE と 1 を組み合わせろ",
       },
       {
         title: "壁の刻印",
-        body: "隅に小さく、擦れた数字が見える。",
-        mark: "2091",
+        body: "視点が固定されると読めない、とだけ残されている。",
+        mark: "視点を変えろ",
       },
     ],
     badEnding: {
@@ -143,47 +146,47 @@ const stages = [
   },
   {
     id: "room-3",
-    label: "Room 3",
+    label: "ROOM 03",
     roomNumber: 3,
     theme: "停止時計室",
-    ruleTag: "順番 + 鏡",
+    ruleTag: "時間理解",
     title: "停止時計室",
     text:
-      "丸い大型時計が天井近くで止まっている。秒針はない。端末にはこう表示される。『最初の部屋の順で、鏡の数字を年として読め』。",
-    objective: "A-Dの順番と鏡読みを使い、この場所が示す年を特定する。",
+      "丸い大型時計が天井近くで止まっている。秒針はない。床の記録板には年号が散らばり、端末には『時計と年号、過去のルールを組み合わせろ』とある。",
+    objective: "時計、年号、過去のルールを使って正しい年を特定する。",
     prompt: "4桁の数字を入力",
-    answer: ["2091"],
-    hintText: "Room 1 の順番と Room 2 の鏡読みを、そのまま重ねる。",
+    answer: ["2068"],
+    hintText: "止まった時計の時刻と、周囲の年号の対応を見比べる。",
     hints: [
-      "並びは Room 1 の答えと同じ 1324。",
-      "A, C, B, D の順に鏡の数字を読めば 2091 になる。",
+      "時計の針が指す位置と、4枚の年号札の並びを対応させる。",
+      "止まった時刻と年号の組み合わせから、答えは 2068。",
     ],
     artClass: "stage-3",
-    feedbackText: "未来を指して止まったままの時計に見える。",
-    memo: {
-      title: "Room 3: 2091年",
-      body: "この施設が示している時代は2091年。単なる密室ではなく、時間そのものがずれている。",
-    },
+    feedbackText: "時計は止まっていても、記録の時間だけは進み続けている。",
+    successText:
+      "認証ログを回収した。\n記憶ログと認証番号が手がかり欄に追加された。",
+    memoryLog: "トケイハミライヲチュウシンニトマル",
+    authNumbers: [10],
     clues: [
       {
-        title: "数字札 A",
-        body: "文字盤の横にある薄いガラス札。数字が鏡向きになっている。",
-        mark: '<span class="mirror-text">2</span>',
+        title: "時計",
+        body: "長針と短針は特定の年だけを指すように固定されている。",
+        mark: "停止時刻: 20:68",
       },
       {
-        title: "数字札 B",
-        body: "傷の少ない新しい札。こちらも反転している。",
-        mark: '<span class="mirror-text">9</span>',
+        title: "記録札 A",
+        body: "古い管理ログには、過去の運用年が断片的に残っている。",
+        mark: "20 / 68",
       },
       {
-        title: "数字札 C",
-        body: "丸く曇った札。中心だけが拭き取られている。",
-        mark: '<span class="mirror-text">0</span>',
+        title: "記録札 B",
+        body: "天井の投影は、年号を2桁ずつ区切って考えろと示している。",
+        mark: "前半2桁 + 後半2桁",
       },
       {
-        title: "数字札 D",
-        body: "細長い札。貼り直した跡がある。",
-        mark: '<span class="mirror-text">1</span>',
+        title: "端末",
+        body: "Room 1 と同じように、順に読むことを求めてくる。",
+        mark: "『時計の示す順をそのまま採用せよ』",
       },
     ],
     badEnding: {
@@ -195,44 +198,47 @@ const stages = [
   },
   {
     id: "room-4",
-    label: "Room 4",
+    label: "ROOM 04",
     roomNumber: 4,
     theme: "無人食堂",
-    ruleTag: "頭文字",
+    ruleTag: "共同体理解",
     title: "無人食堂",
     text:
-      "椅子も食器もきれいに並んでいるのに、人の気配だけがない。温かいはずのスープ皿は空だ。端末には『各メモの最初の一文字だけ読め』とある。",
-    objective: "食堂に残された短いメモから、この場所の状態を読む。",
-    prompt: "今の状況をひらがなで入力",
-    answer: ["だれも"],
-    hintText: "文そのものより、文の最初の文字に意味がある。",
+      "椅子も食器もきれいに並んでいるのに、人の気配だけがない。端末には『メニューと掲示物の頭文字だけ拾え』とある。",
+    objective: "残されたメニューや掲示物の頭文字から、この食堂の現状を読む。",
+    prompt: "現状をカタカナで入力",
+    answer: ["ダレモイナイ"],
+    hintText: "文章全体ではなく、各行の最初の一文字だけに意味がある。",
     hints: [
-      "3つのメモの冒頭だけを読む。",
-      "『だ』『れ』『も』で、答えは だれも。",
+      "各メニューや掲示文の頭文字だけを拾う。",
+      "並べると『ダレモイナイ』になる。",
     ],
     artClass: "stage-4",
-    feedbackText: "食器だけが人の代わりに待っている。",
-    memo: {
-      title: "Room 4: 誰もいない",
-      body: "2091年のこの施設には、もう誰もいない。残っているのは整えられた生活の跡だけだ。",
-    },
+    feedbackText: "食器だけが人の代わりに、静かに待っている。",
+    successText:
+      "認証ログを回収した。\n記憶ログと認証番号が手がかり欄に追加された。",
+    memoryLog: "ムジンノショクドウデウシナッタヒトヲオモウ",
+    authNumbers: [10],
     clues: [
       {
-        title: "メモ A",
-        body: "だいぶ前に配膳は止まりました。けれど席だけは減っていません。",
+        title: "掲示 A",
+        body: "ダイニング閉鎖。配膳担当は全員退避済み。",
+        mark: "ダ",
       },
       {
-        title: "メモ B",
-        body: "れいぞう庫だけが静かに稼働中です。厨房担当の呼び出しには応答がありません。",
+        title: "掲示 B",
+        body: "レシピ保全。モジュール点検のため入室制限中。",
+        mark: "レ",
       },
       {
-        title: "メモ C",
-        body: "もう人員確認は不要です。自動保守のみで運用を継続します。",
+        title: "メニュー札",
+        body: "モーニング、イブニング、ナイト、インスタントの見出しだけが残っている。",
+        mark: "モ / イ / ナ / イ",
       },
       {
         title: "端末",
         body: "短い命令文が点滅している。",
-        mark: "『各メモの最初の一文字だけ読め』",
+        mark: "『頭文字だけ読め』",
       },
     ],
     badEnding: {
@@ -244,47 +250,47 @@ const stages = [
   },
   {
     id: "room-5",
-    label: "Room 5",
+    label: "ROOM 05",
     roomNumber: 5,
     theme: "空庭温室",
-    ruleTag: "文字目",
+    ruleTag: "自然共生",
     title: "空庭温室",
     text:
-      "最後の密室らしさが薄れ、青緑の光と植物の匂いが入ってくる。ガラス越しの外は穏やかだ。端末には『鉢ごとに示された数字の文字目を拾え』とある。",
-    objective: "苗札の単語と数字から、この場所の印象を表す言葉を抜き出す。",
-    prompt: "この場所の印象をひらがなで入力",
-    answer: ["らくえん"],
-    hintText: "数字は順番ではなく、単語の中の何文字目かを示している。",
+      "青緑の光と植物の匂いが満ちている。ガラス越しの外は穏やかだ。端末には『植物ラベルから指定文字を抜き出せ』とある。",
+    objective: "植物ラベルの文字から、温室が求める言葉を抜き出す。",
+    prompt: "導かれる言葉をカタカナで入力",
+    answer: ["ミドリヲツナゲ"],
+    hintText: "数字は順番ではなく、ラベルの何文字目かを示している。",
     hints: [
-      "各鉢で、単語の指定された文字目を拾う。",
-      "きらめきの2文字目、しずくの4文字目、かえでの2文字目、あんどんの2文字目で『らくえん』。",
+      "各ラベルに対応する文字を抜き出し、順に並べる。",
+      "抜き出された語は『ミドリヲツナゲ』になる。",
     ],
     artClass: "stage-5",
-    feedbackText: "ここだけは、むしろ出たくなくなるくらい穏やかだ。",
-    memo: {
-      title: "Room 5: 楽園",
-      body: "外の景色は荒廃ではなく、むしろ整いすぎた楽園に近い。怖さより、静けさのほうが強い。",
-    },
+    feedbackText: "ここだけは、温室というより未来の庭に近い。",
+    successText:
+      "認証ログを回収した。\n記憶ログと認証番号が手がかり欄に追加された。",
+    memoryLog: "ミドリヲミライヘツナグ",
+    authNumbers: [4],
     clues: [
       {
         title: "苗札 A",
-        body: "白い小花の鉢。札には『きらめき』とある。",
-        mark: "2枚葉",
+        body: "白い小花の鉢。苗札の語から指定文字を抜き出す必要がある。",
+        mark: "ミドリ / 1文字目",
       },
       {
         title: "苗札 B",
-        body: "細い茎の鉢。札には『しずく』とある。",
-        mark: "4枚葉",
+        body: "細い茎の鉢。次も同じく文字位置指定だ。",
+        mark: "ツナグ / 1文字目",
       },
       {
         title: "苗札 C",
-        body: "小さな木の苗。札には『かえで』とある。",
-        mark: "2枚葉",
+        body: "葉脈の裏に、追加の抜き出し指示がある。",
+        mark: "ミドリ / 4文字目",
       },
       {
         title: "苗札 D",
-        body: "やわらかな光を受ける鉢。札には『あんどん』とある。",
-        mark: "2枚葉",
+        body: "最後のラベルだけ、つなぐ対象まで書かれている。",
+        mark: "ツナゲ / 4文字目",
       },
     ],
     badEnding: {
@@ -296,52 +302,52 @@ const stages = [
   },
   {
     id: "room-6",
-    label: "Room 6",
+    label: "ROOM 06",
     roomNumber: 6,
     theme: "避難記録庫",
-    ruleTag: "年代順",
+    ruleTag: "歴史理解",
     title: "避難記録庫",
     text:
-      "壁一面に保存ケースが並び、年号つきの記録板が無音で光っている。表示はひとつだけ。『古い順に並べ、角の文字だけ読め』。",
-    objective: "記録板を年代順に読み、この区画の種類を特定する。",
-    prompt: "この区画の種類をひらがなで入力",
-    answer: ["ひなんしつ"],
-    hintText: "見るべきなのは本文よりも年号の順番と、角に残った文字。",
+      "壁一面に保存ケースが並び、年号つきの記録板が無音で光っている。表示はひとつだけ。『記録を年代順に並べ、最後に残る語を答えよ』。",
+    objective: "断片記録を年代順に並べ、この施設が待っていた存在を特定する。",
+    prompt: "導かれる語をカタカナで入力",
+    answer: ["サイゴノコウホシャ"],
+    hintText: "本文の内容と年号の並びから、候補者像を一つに絞る。",
     hints: [
-      "年号を古い順に並べる。2087, 2088, 2089, 2090, 2091。",
-      "角印を順に読むと『ひなんしつ』になる。",
+      "2087 から 2091 までの流れを追うと、誰を待っていた施設かが見えてくる。",
+      "導かれる語は『サイゴノコウホシャ』。",
     ],
     artClass: "stage-6",
-    feedbackText: "ここは収容施設ではなく、誰かを守るための区画だったらしい。",
-    memo: {
-      title: "Room 6: 避難室",
-      body: "この建物は実験施設ではなく避難室。争いのあとに残された、最後の受け入れ場所だった可能性が高い。",
-    },
+    feedbackText: "ここは記録庫であると同時に、待機室の履歴でもある。",
+    successText:
+      "認証ログを回収した。\n記憶ログと認証番号が手がかり欄に追加された。",
+    memoryLog: "ワタシハモウイチドエラバレタ",
+    authNumbers: [5],
     clues: [
       {
         title: "記録板 2090",
         body: "保守人員の退去完了。外部生態系は安定と記載されている。",
-        mark: "角印: し",
+        mark: "待機対象は 1 名",
       },
       {
         title: "記録板 2087",
         body: "避難区画を初期化。遅延到着者用の自動起床を開始。",
-        mark: "角印: ひ",
+        mark: "候補者選別を開始",
       },
       {
         title: "記録板 2091",
         body: "最終受け入れ待機。以後は自動運営へ移行。",
-        mark: "角印: つ",
+        mark: "最後の候補者を待つ",
       },
       {
         title: "記録板 2089",
         body: "移住完了後の生活圏を上層庭園へ集約。",
-        mark: "角印: ん",
+        mark: "残されたのは帰還対象",
       },
       {
         title: "記録板 2088",
         body: "内部設備の常時稼働を確認。食堂、温室、監視系は無人運転へ。",
-        mark: "角印: な",
+        mark: "施設は再起動待機へ",
       },
     ],
     badEnding: {
@@ -353,47 +359,49 @@ const stages = [
   },
   {
     id: "room-7",
-    label: "Room 7",
+    label: "ROOM 07",
     roomNumber: 7,
     theme: "帰還ゲート室",
-    ruleTag: "総合",
+    ruleTag: "未来を選ぶ覚悟",
     title: "帰還ゲート室",
     text:
-      "最後の扉は、これまでのどの部屋より静かだった。柔らかい白金色の光だけが床に落ちている。端末にはこうある。『最初の部屋の順で並べ、鏡として読み、数字の文字目を拾え』。",
-    objective: "これまでのルールを組み合わせ、最後の扉の言葉を読む。",
-    prompt: "最後の扉の言葉をひらがなで入力",
-    answer: ["おかえり"],
-    hintText: "Room 1 の順番、Room 2 の鏡読み、Room 5 の文字目を全部使う。",
+      "帰還認証を開始します。これまでの部屋で取得した認証番号を使用し、回復した記憶ログから該当する文字を抽出してください。抽出した文字を、部屋を通過した順に並べてください。それが、あなたの最終意思です。",
+    objective: "ROOM 01〜07 の記憶ログと認証番号から文字を抽出し、最終意思を完成させる。",
+    prompt: "最終意思をカタカナで入力",
+    answer: ["チキュウヲモドセ"],
+    hintText: "右側の手がかり欄に並んだ記憶ログと認証番号を、そのまま部屋順に使う。",
     hints: [
-      "まず札は 1324 の順に並べる。",
-      "鏡として読むと『とおく』『まえぶれ』『ひかり』『ひかり』になる。指定文字を拾うと『おかえり』。",
+      "ROOM 01 から ROOM 07 まで、認証番号が示す文字だけを抜き出す。",
+      "並ぶ語は『チキュウヲモドセ』になる。",
     ],
     artClass: "stage-7",
-    feedbackText: "扉の向こうは、もう出口というより帰還先に見える。",
-    memo: {
-      title: "Room 7: おかえり",
-      body: "最後の扉はあなたを拒まず、『おかえり』と迎える。ここは罰の施設ではなく、遅れて帰る誰かを待つ場所だった。",
-    },
+    feedbackText:
+      "右側の手がかり欄には、これまでに回復した記憶ログと認証番号が並んでいる。",
+    successText:
+      "帰還認証：完了\n選別試験を終了します。\n\n候補者の意思を確認しました。\nあなたは、未来へ逃げるのではない。\n地球を戻すために、2091年へ進む。",
+    memoryLog: "ミライハドコカデハナイチキュウヘカエセ",
+    authNumbers: [5, 19],
+    showRecordWhileActive: true,
     clues: [
       {
-        title: "札 A",
-        body: "数字指定も鏡文字も混ざった札。",
-        mark: '<span class="mirror-text">くおと</span> / 2文字目',
+        title: "認証端末",
+        body: "抽出した文字を、部屋を通過した順に並べろとだけ表示されている。",
+        mark: "ROOM 01 → ROOM 07",
       },
       {
-        title: "札 B",
-        body: "古い傷のある札。こちらも反転したままだ。",
-        mark: '<span class="mirror-text">れぶえま</span> / 2文字目',
+        title: "ROOM 07 記憶ログ",
+        body: "最後の記憶ログも、すでに画面上には回復している。",
+        mark: "ミライハドコカデハナイチキュウヘカエセ",
       },
       {
-        title: "札 C",
-        body: "光にかざすと少しだけ透ける札。",
-        mark: '<span class="mirror-text">りかひ</span> / 2文字目',
+        title: "ROOM 07 認証番号",
+        body: "この部屋だけは2つの番号が並ぶ。",
+        mark: "5 / 19",
       },
       {
-        title: "札 D",
-        body: "同じ語に見えるが、数字が違う。",
-        mark: '<span class="mirror-text">りかひ</span> / 3文字目',
+        title: "抽出ルール",
+        body: "これまでに回復した記憶ログを見返し、認証番号に対応する文字を拾う。",
+        mark: "最終答えは12文字",
       },
     ],
     badEnding: {
@@ -406,10 +414,10 @@ const stages = [
 ];
 
 const successEnding = {
-  kind: "True End",
+  kind: "帰還認証：完了",
   title: "ようこそ、2091年へ",
   text:
-    "扉の先にあったのは処刑場でも廃墟でもなく、風と光だけが静かに行き交う無人の居住区だった。避難室の記録どおり、人々はもっと先の生活圏へ移っていったのだろう。最後の表示は『おかえり』。あなたは遅れて目覚めた最後の到着者だったらしい。争いの終わったあとに残されたこの楽園で、少しずつ暮らし方を覚えていけばいい。急ぐ理由は、もうどこにもない。",
+    "選別試験を終了します。\n\n候補者の意思を確認しました。\nあなたは、未来へ逃げるのではない。\n地球を戻すために、2091年へ進む。\n\n扉の先にあるのは、無人のまま保たれた楽園ではなく、やり直すために残された帰還地点だった。最後の到着者であるあなたが選んだのは、逃避ではなく帰還。ここから先は、失われた地球を取り戻すための時間になる。",
 };
 
 const hotspotLayouts = {
@@ -654,7 +662,11 @@ function playSoundEffect(kind) {
 }
 
 function normalizeAnswer(value) {
-  return value.trim().toLowerCase().replace(/\s+/g, "");
+  return value
+    .normalize("NFKC")
+    .replace(/[\s\u3000]+/g, "")
+    .replace(/[ぁ-ゖ]/g, (char) => String.fromCharCode(char.charCodeAt(0) + 0x60))
+    .toUpperCase();
 }
 
 function clampStageIndex(index) {
@@ -717,6 +729,26 @@ function getCurrentRoomNumber() {
 
 function getCompletedRoomCount() {
   return Math.max(0, Math.min(7, state.maxReached - 1));
+}
+
+function formatRoomRecordLabel(roomNumber) {
+  return `ROOM ${String(roomNumber).padStart(2, "0")}`;
+}
+
+function getAuthDisplay(stage) {
+  return Array.isArray(stage.authNumbers) ? stage.authNumbers.join(" / ") : "";
+}
+
+function shouldRevealRecord(stage) {
+  if (stage.roomNumber <= 0 || !stage.memoryLog || !stage.authNumbers) {
+    return false;
+  }
+
+  if (state.maxReached > stage.roomNumber) {
+    return true;
+  }
+
+  return stage.showRecordWhileActive === true && getCurrentStage().id === stage.id;
 }
 
 function getHotspotsForStage(stage) {
@@ -863,32 +895,36 @@ function renderTimeline() {
 
 function renderLogbook() {
   memoList.innerHTML = "";
-  const entries = stages
-    .slice(1, state.maxReached)
-    .filter((stage) => stage.memo);
+  const entries = stages.filter((stage) => shouldRevealRecord(stage));
 
   if (!entries.length) {
     const empty = document.createElement("div");
     empty.className = "empty-state";
-    empty.textContent = "各部屋を抜けるたび、ここに重要な発見が蓄積される。";
+    empty.textContent = "各部屋を抜けるたび、ここに記憶ログと認証番号が蓄積される。";
     memoList.append(empty);
     logbookStatus.textContent = "まだ記録はない";
     return;
   }
 
-  logbookStatus.textContent = `${entries.length} 件の発見を記録中`;
+  logbookStatus.textContent =
+    getCurrentStage().id === "room-7"
+      ? `${entries.length} 件の記憶ログと認証番号を照合中`
+      : `${entries.length} 件の記憶ログを記録中`;
 
   for (const stage of entries) {
     const card = document.createElement("article");
     card.className = "memo-card";
 
     const title = document.createElement("h4");
-    title.textContent = stage.memo.title;
+    title.textContent = formatRoomRecordLabel(stage.roomNumber);
 
-    const body = document.createElement("p");
-    body.textContent = stage.memo.body;
+    const memory = document.createElement("p");
+    memory.textContent = `記憶ログ：${stage.memoryLog}`;
 
-    card.append(title, body);
+    const auth = document.createElement("p");
+    auth.textContent = `認証番号：${getAuthDisplay(stage)}`;
+
+    card.append(title, memory, auth);
     memoList.append(card);
   }
 }
@@ -1147,7 +1183,7 @@ answerForm.addEventListener("submit", (event) => {
   const isCorrect = stage.answer.some((answer) => normalizeAnswer(answer) === input);
 
   if (isCorrect) {
-    feedback.textContent = "扉のロックが外れる音がした。";
+    feedback.textContent = stage.successText || "扉のロックが外れる音がした。";
     feedback.className = "feedback success";
     triggerTransientClass(answerForm, "is-valid", 720);
     triggerTransientClass(sceneArt, "is-success", 720);

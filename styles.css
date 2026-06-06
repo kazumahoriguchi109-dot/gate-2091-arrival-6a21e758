@@ -636,6 +636,7 @@ body[data-view="game"] .title-screen {
   padding: 16px;
   color: var(--muted);
   line-height: 1.72;
+  white-space: pre-line;
 }
 
 .feedback.success {
@@ -843,6 +844,12 @@ body[data-view="game"] .title-screen {
 
 .memo-card h4 {
   margin: 0 0 8px;
+}
+
+.memo-card {
+  display: grid;
+  gap: 8px;
+  padding: 14px 15px;
 }
 
 .ending-dialog {
