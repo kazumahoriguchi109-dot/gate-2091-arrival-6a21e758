@@ -549,7 +549,7 @@ const sceneDetails = {
 };
 
 const sceneIllustrations = {
-  intro: "assets/figma-bg/room-1.png",
+  intro: "assets/figma-bg/intro-door.png",
   "room-1": "assets/figma-bg/room-1.png",
   "room-2": "assets/figma-bg/room-2.png",
   "room-3": "assets/figma-bg/room-3.png",
