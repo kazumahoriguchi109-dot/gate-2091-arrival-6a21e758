@@ -222,7 +222,7 @@ const stages = [
     successText:
       "認証ログを回収した。\n記憶ログと認証番号が手がかり欄に追加された。",
     memoryLog: "ムジンノショクドウデウシナッタヒトヲオモウ",
-    authNumbers: [10],
+    authNumbers: [9],
     clues: [
       {
         title: "掲示 A",
