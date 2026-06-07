@@ -275,11 +275,24 @@ body[data-view="game"] .title-screen {
   background: transparent;
   cursor: pointer;
   padding: 0;
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
+  user-select: none;
 }
 
 .hotspot-button:hover,
 .hotspot-button:focus-visible {
   transform: translate(-50%, -50%);
+}
+
+.hotspot-button:hover::after,
+.hotspot-button:focus-visible::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border: 1px solid rgba(255, 255, 255, 0.34);
+  border-radius: 8px;
+  box-shadow: 0 0 0 1px rgba(10, 12, 16, 0.16) inset;
 }
 
 .hotspot-button:focus-visible {

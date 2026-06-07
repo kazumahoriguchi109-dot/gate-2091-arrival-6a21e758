@@ -460,10 +460,10 @@ const hotspotLayouts = {
     { x: 76, y: 70 },
   ],
   "room-1": [
-    { x: 16, y: 28, width: 22, height: 16 },
-    { x: 15, y: 61, width: 16, height: 16 },
-    { x: 84, y: 34, width: 15, height: 22 },
-    { x: 83, y: 64, width: 22, height: 14 },
+    { x: 10.5, y: 23.5, width: 15, height: 16 },
+    { x: 15.5, y: 50.5, width: 13, height: 16 },
+    { x: 79.5, y: 23.5, width: 13, height: 16 },
+    { x: 80, y: 51, width: 15, height: 16 },
   ],
   "room-2": [
     { x: 24, y: 28 },
