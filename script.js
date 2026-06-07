@@ -1194,7 +1194,7 @@ function startNarrativeSequence(messages, phase, kicker) {
   state.phase = phase;
   state.activeMessages = messages.slice();
   state.messageIndex = 0;
-  windowKicker.textContent = kicker;
+  windowKicker.textContent = "Log";
   renderNarrativeWindow();
 }
 
