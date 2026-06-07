@@ -103,16 +103,25 @@ button:hover {
 }
 
 .title-menu-block {
-  position: relative;
+  position: absolute;
+  left: 50%;
+  bottom: clamp(28px, 6vh, 72px);
+  transform: translateX(-50%);
   z-index: 2;
-  width: min(460px, calc(100vw - 32px));
-  margin-top: 32vh;
+  width: min(420px, calc(100vw - 32px));
+  margin-top: 0;
+  padding: 18px 22px;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  border-radius: 28px;
+  background: linear-gradient(180deg, rgba(13, 18, 24, 0.18), rgba(13, 18, 24, 0.3));
+  backdrop-filter: blur(16px);
+  box-shadow: 0 24px 64px rgba(20, 24, 30, 0.2);
   text-align: center;
 }
 
 .title-menu {
   display: grid;
-  gap: 18px;
+  gap: 14px;
 }
 
 .title-menu-button {
@@ -121,11 +130,11 @@ button:hover {
   padding: 0;
   background: transparent;
   color: rgba(255, 255, 255, 0.96);
-  font-size: clamp(2rem, 3.8vw, 3.3rem);
-  letter-spacing: 0.16em;
+  font-size: clamp(1.45rem, 2.6vw, 2.2rem);
+  letter-spacing: 0.12em;
   text-shadow:
-    0 0 18px rgba(255, 255, 255, 0.94),
-    0 0 34px rgba(110, 197, 240, 0.18);
+    0 0 16px rgba(255, 255, 255, 0.72),
+    0 0 28px rgba(110, 197, 240, 0.16);
   cursor: pointer;
 }
 
@@ -170,7 +179,7 @@ button:hover {
 }
 
 .title-progress {
-  margin-top: 22px;
+  margin-top: 18px;
 }
 
 .title-progress-label,
@@ -185,13 +194,13 @@ button:hover {
 
 .title-progress-label {
   margin: 0;
-  font-size: 0.92rem;
-  color: rgba(255, 255, 255, 0.78);
+  font-size: 0.78rem;
+  color: rgba(255, 255, 255, 0.7);
   text-shadow: 0 0 14px rgba(0, 0, 0, 0.16);
 }
 
 .title-progress-value {
-  margin: 10px 0 0;
+  margin: 6px 0 0;
   color: rgba(255, 255, 255, 0.96);
   text-shadow: 0 0 20px rgba(0, 0, 0, 0.24);
 }
@@ -1203,7 +1212,9 @@ body[data-view="game"] .title-screen {
 
 @media (max-width: 860px) {
   .title-menu-block {
-    margin-top: 38vh;
+    bottom: 18px;
+    width: min(420px, calc(100vw - 24px));
+    padding: 16px 16px 18px;
   }
 
   .scene-topbar {
@@ -1300,16 +1311,17 @@ body[data-view="game"] .title-screen {
 
 @media (max-width: 520px) {
   .title-menu-block {
-    width: calc(100vw - 24px);
-    margin-top: 41vh;
+    width: calc(100vw - 20px);
+    bottom: 12px;
+    padding: 14px 14px 16px;
   }
 
   .title-menu {
-    gap: 14px;
+    gap: 12px;
   }
 
   .title-menu-button {
-    font-size: clamp(1.7rem, 9vw, 2.5rem);
+    font-size: clamp(1.24rem, 6vw, 1.72rem);
   }
 
   .title-menu-button::before,

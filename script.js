@@ -549,7 +549,7 @@ const sceneDetails = {
 };
 
 const sceneIllustrations = {
-  intro: "assets/figma-bg/prologue.png",
+  intro: "assets/figma-bg/room-1.png",
   "room-1": "assets/figma-bg/room-1.png",
   "room-2": "assets/figma-bg/room-2.png",
   "room-3": "assets/figma-bg/room-3.png",
@@ -557,6 +557,7 @@ const sceneIllustrations = {
   "room-5": "assets/figma-bg/room-5.png",
   "room-6": "assets/figma-bg/room-6.png",
   "room-7": "assets/figma-bg/room-7.png",
+  "true-end": "assets/figma-bg/true-end.png",
 };
 
 const stageScenes = {
@@ -1312,7 +1313,7 @@ function renderTrueEndingStage() {
   themeChip.textContent = trueEndingScene.theme;
   ruleChip.textContent = trueEndingScene.ruleTag;
   stageTitle.textContent = trueEndingScene.title;
-  sceneIllustration.src = sceneIllustrations["room-7"];
+  sceneIllustration.src = sceneIllustrations["true-end"];
   sceneArt.className = "scene-art stage-ending";
   setMenuOpen(false);
   setPuzzleOpen(false);
