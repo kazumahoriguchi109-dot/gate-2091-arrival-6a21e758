@@ -460,10 +460,10 @@ const hotspotLayouts = {
     { x: 76, y: 70 },
   ],
   "room-1": [
-    { x: 12, y: 26 },
-    { x: 12, y: 56 },
-    { x: 73, y: 31 },
-    { x: 73, y: 58 },
+    { x: 16, y: 28, width: 22, height: 16 },
+    { x: 15, y: 61, width: 16, height: 16 },
+    { x: 84, y: 34, width: 15, height: 22 },
+    { x: 83, y: 64, width: 22, height: 14 },
   ],
   "room-2": [
     { x: 24, y: 28 },
@@ -859,6 +859,7 @@ const windowKicker = document.getElementById("window-kicker");
 const narrativeMessage = document.getElementById("narrative-message");
 const narrativeNext = document.getElementById("narrative-next");
 const messageProgress = document.getElementById("message-progress");
+const hotspotLayer = document.getElementById("hotspot-layer");
 const doorButton = document.getElementById("door-button");
 const doorPrompt = document.getElementById("door-prompt");
 const menuToggle = document.getElementById("menu-toggle");
@@ -1169,6 +1170,7 @@ function renderNarrativeWindow() {
   const message = state.activeMessages[state.messageIndex] || "";
   narrativeWindow.hidden = total === 0;
   narrativeWindow.classList.toggle("is-clickable", total > 0);
+  narrativeNext.hidden = false;
   narrativeMessage.textContent = message;
   messageProgress.textContent = `${Math.min(state.messageIndex + 1, Math.max(total, 1))} / ${Math.max(total, 1)}`;
 
@@ -1196,6 +1198,66 @@ function startNarrativeSequence(messages, phase, kicker) {
   state.messageIndex = 0;
   windowKicker.textContent = "Log";
   renderNarrativeWindow();
+}
+
+function clearHotspots() {
+  hotspotLayer.innerHTML = "";
+  hotspotLayer.hidden = true;
+}
+
+function showInspectLog(message, footer = "") {
+  windowKicker.textContent = "Log";
+  narrativeWindow.hidden = false;
+  narrativeWindow.classList.remove("is-clickable");
+  narrativeMessage.textContent = message;
+  narrativeNext.textContent = footer;
+  narrativeNext.hidden = !footer;
+}
+
+function inspectHotspot(index) {
+  const stage = getCurrentStage();
+  if (state.phase !== "door" || !stage.clues || !stage.clues[index]) {
+    return;
+  }
+
+  const clue = stage.clues[index];
+  const details = [clue.mark, clue.body].filter(Boolean).join("\n");
+  showInspectLog(details, "A〜Dを調べられる。扉も調べられる。");
+}
+
+function renderHotspots(stage) {
+  clearHotspots();
+
+  if (state.phase !== "door" || stage.id !== "room-1") {
+    return;
+  }
+
+  const layout = hotspotLayouts[stage.id];
+  if (!Array.isArray(layout) || !Array.isArray(stage.clues)) {
+    return;
+  }
+
+  hotspotLayer.hidden = false;
+
+  layout.forEach((spot, index) => {
+    const clue = stage.clues[index];
+    if (!clue) {
+      return;
+    }
+
+    const button = document.createElement("button");
+    button.type = "button";
+    button.className = "hotspot-button";
+    button.style.left = `${spot.x}%`;
+    button.style.top = `${spot.y}%`;
+    button.style.width = `${spot.width || 10}%`;
+    button.style.height = `${spot.height || 10}%`;
+    button.setAttribute("aria-label", `${clue.title}を調べる`);
+    button.addEventListener("click", () => {
+      inspectHotspot(index);
+    });
+    hotspotLayer.append(button);
+  });
 }
 
 function setDoorEnabled(isEnabled, prompt = "") {
@@ -1232,8 +1294,9 @@ function enterDoorPhase() {
   state.phase = "door";
   state.activeMessages = [];
   state.messageIndex = 0;
-  narrativeWindow.hidden = true;
+  showInspectLog(scene.inspectLine || "気になる場所を調べられる。", stage.id === "room-1" ? "A〜Dを調べられる。扉も調べられる。" : "");
   setDoorEnabled(true, scene.doorPrompt || "扉が反応している。");
+  renderHotspots(stage);
 }
 
 function openPuzzle() {
@@ -1243,6 +1306,7 @@ function openPuzzle() {
 
   setMenuOpen(false);
   state.phase = "puzzle";
+  clearHotspots();
   setDoorEnabled(false);
   renderPuzzle(getCurrentStage());
   setPuzzleOpen(true);
@@ -1277,6 +1341,7 @@ function renderStage() {
   sceneIllustration.src = getSceneIllustration(stage);
   sceneArt.className = `scene-art ${stage.artClass}`;
   state.revealedRecordStageId = null;
+  clearHotspots();
   setMenuOpen(false);
   setPuzzleOpen(false);
   setDoorEnabled(false);

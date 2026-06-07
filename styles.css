@@ -262,6 +262,30 @@ body[data-view="game"] .title-screen {
   background: none;
 }
 
+.hotspot-layer {
+  position: absolute;
+  inset: 0;
+  z-index: 8;
+}
+
+.hotspot-button {
+  position: absolute;
+  transform: translate(-50%, -50%);
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+  padding: 0;
+}
+
+.hotspot-button:hover,
+.hotspot-button:focus-visible {
+  transform: translate(-50%, -50%);
+}
+
+.hotspot-button:focus-visible {
+  outline: none;
+}
+
 .narrative-window,
 .menu-toggle,
 .menu-drawer,
@@ -481,6 +505,7 @@ body[data-view="game"] .title-screen {
   font-weight: 700;
   line-height: 1.62;
   letter-spacing: 0.02em;
+  white-space: pre-line;
 }
 
 .narrative-next {
