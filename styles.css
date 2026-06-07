@@ -129,12 +129,10 @@ button:hover {
   border: 0;
   padding: 0;
   background: transparent;
-  color: rgba(255, 255, 255, 0.96);
+  color: rgba(245, 247, 250, 0.94);
   font-size: clamp(1.45rem, 2.6vw, 2.2rem);
   letter-spacing: 0.12em;
-  text-shadow:
-    0 0 16px rgba(255, 255, 255, 0.72),
-    0 0 28px rgba(110, 197, 240, 0.16);
+  text-shadow: none;
   cursor: pointer;
 }
 
@@ -161,10 +159,8 @@ button:hover {
 .title-menu-button:hover::before,
 .title-menu-button:hover::after,
 .title-menu-button:focus-visible::before,
-.title-menu-button:focus-visible::after,
-.title-menu-button-primary::before,
-.title-menu-button-primary::after {
-  opacity: 1;
+.title-menu-button:focus-visible::after {
+  opacity: 0;
 }
 
 .title-menu-button:disabled {
@@ -178,11 +174,6 @@ button:hover {
   opacity: 0;
 }
 
-.title-progress {
-  margin-top: 18px;
-}
-
-.title-progress-label,
 .status-label,
 .hint-label,
 .window-header,
@@ -190,19 +181,6 @@ button:hover {
   font-family: "Cormorant Garamond", serif;
   letter-spacing: 0.24em;
   text-transform: uppercase;
-}
-
-.title-progress-label {
-  margin: 0;
-  font-size: 0.78rem;
-  color: rgba(255, 255, 255, 0.7);
-  text-shadow: 0 0 14px rgba(0, 0, 0, 0.16);
-}
-
-.title-progress-value {
-  margin: 6px 0 0;
-  color: rgba(255, 255, 255, 0.96);
-  text-shadow: 0 0 20px rgba(0, 0, 0, 0.24);
 }
 
 .title-settings {
@@ -1327,10 +1305,6 @@ body[data-view="game"] .title-screen {
   .title-menu-button::before,
   .title-menu-button::after {
     width: 42px;
-  }
-
-  .title-progress-label {
-    font-size: 0.84rem;
   }
 
   .scene-stage-title {

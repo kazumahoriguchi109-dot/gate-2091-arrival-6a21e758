@@ -840,7 +840,6 @@ const state = {
   menuOpen: false,
 };
 
-const titleSaveStatus = document.getElementById("title-save-status");
 const startGameButton = document.getElementById("start-game-button");
 const continueGameButton = document.getElementById("continue-game-button");
 const settingsButton = document.getElementById("settings-button");
@@ -866,7 +865,6 @@ const menuToggle = document.getElementById("menu-toggle");
 const menuCloseButton = document.getElementById("menu-close-button");
 const menuScrim = document.getElementById("menu-scrim");
 const menuDrawer = document.getElementById("menu-drawer");
-const saveStatus = document.getElementById("save-status");
 const memoList = document.getElementById("memo-list");
 const logbookStatus = document.getElementById("logbook-status");
 const puzzleOverlay = document.getElementById("puzzle-overlay");
@@ -1051,22 +1049,7 @@ function hasResumeData() {
   return state.maxReached > 0;
 }
 
-function getSaveStatusText() {
-  if (state.maxReached >= stages.length) {
-    return "全7部屋クリア済み。最後の到着者として再開可能。";
-  }
-
-  if (hasResumeData()) {
-    return `${formatRoomRecordLabel(Math.max(1, getCurrentRoomNumber()))} から再開可能`;
-  }
-
-  return "新規プレイ";
-}
-
 function updateSaveStatus() {
-  const statusText = getSaveStatusText();
-  saveStatus.textContent = statusText;
-  titleSaveStatus.textContent = statusText;
   continueGameButton.disabled = !hasResumeData();
 }
 
